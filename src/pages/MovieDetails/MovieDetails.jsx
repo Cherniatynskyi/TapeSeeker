@@ -1,5 +1,5 @@
-import { Link, useParams, Outlet } from 'react-router-dom'
-import {useState, useEffect, useRef} from 'react'
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom'
+import {useState, useEffect, useRef, Suspense} from 'react'
 import * as API from '../../services/movies-api'
 
 import css from './MovieDetails.module.css'
@@ -9,8 +9,9 @@ const MovieDetails = () =>{
     const [movie, setMovie] = useState({})
     const {movieId} = useParams()
     const effectRun = useRef(true)
-
     const {title, vote_average, poster_path, genres, overview} = movie
+    const location = useLocation()
+    const backLinkLocation = useRef(location.state?.from ?? '/movies')
 
     useEffect(() => {
      const getMovie = async () =>{
@@ -29,8 +30,9 @@ const MovieDetails = () =>{
 
     return (
         <>
+            <Link className={css.backButton} to={backLinkLocation.current}>Back to movies</Link>
             <div className={css.detailsContainer}>
-                <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
+                <img src={poster_path && `https://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
                 <div>
                     <p>{title}</p>
                     <p>Score: {vote_average !== 0 ? Math.ceil((vote_average)*10)/10 : 'No reviews yet'}</p>
@@ -46,7 +48,9 @@ const MovieDetails = () =>{
                 <li className={css.detailsMenuButton}><Link to='cast'>Cast</Link></li>
                 <li className={css.detailsMenuButton}><Link to='reviews'>Reviews</Link></li>
             </ul>
-            <Outlet/>
+            <Suspense fallback={<div>Loading....</div>}>
+                <Outlet/>
+            </Suspense>
         </>
         
     )

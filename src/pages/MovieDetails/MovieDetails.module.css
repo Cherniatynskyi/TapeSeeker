@@ -32,3 +32,18 @@
     }
 
 }
+
+.backButton{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    background-color: grey;
+    border-radius: 6px;
+    margin-left: 40px;
+    margin-top: 5px;
+    padding: 10px;
+
+    &:hover{
+        background-color: rgb(106, 106, 106);
+    }
+}

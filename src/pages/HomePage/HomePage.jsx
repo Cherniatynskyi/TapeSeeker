@@ -15,7 +15,6 @@ const HomePage = () => {
             effectRun.current = false
             try{
                 const fetchedMovies = await API.getTrandMovies()
-                console.log(fetchedMovies)
                 setMovies(fetchedMovies)
             }
             catch(error){alert('error')}

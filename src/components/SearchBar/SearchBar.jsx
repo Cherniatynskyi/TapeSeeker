@@ -1,12 +1,10 @@
 import { useState } from "react";
-
-
+import css from './SearchBar.module.css'
 
 export const SearchBar = ({onSubmit}) => {
     const [query, setQuery] = useState('')
 
     const handleChange = (e) => {
-        console.log(e.target.value)
         setQuery(e.target.value)
     }
 
@@ -23,15 +21,16 @@ export const SearchBar = ({onSubmit}) => {
   
         return (
             <header >
-                <form  onSubmit={handleSubmit}>
-                    <button type="submit">
+                <form className={css.form} onSubmit={handleSubmit}>
+                    <button className={css.formButton} type="submit">
                     <span>Search</span>
                     </button>
                     <input
+                        className={css.input}
                         type="text"
                         autoComplete="off"
                         autoFocus
-                        placeholder="Search images and photos"
+                        placeholder="Search movies"
                         onChange={handleChange}
                         value={query}
                     />
