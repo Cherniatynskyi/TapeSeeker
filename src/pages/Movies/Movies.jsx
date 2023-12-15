@@ -19,6 +19,7 @@ const Movies = () =>{
                         return
                     }
                    const fetchedMovie = await API.searchMovies(q)
+                   console.log(fetchedMovie)
                    setSearchResult(fetchedMovie)
                }
                catch(error){alert('error')}
