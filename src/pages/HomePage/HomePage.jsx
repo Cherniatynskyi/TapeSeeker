@@ -3,6 +3,7 @@ import {useState, useEffect, useRef} from 'react'
 import { MoviesList } from 'components/MoviesList/MoviesList'
 import {useLocation} from 'react-router-dom'
 import css from './HomePage.module.css'
+import Notiflix from 'notiflix';
 
 
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
                 const fetchedMovies = await API.getTrandMovies()
                 setMovies(fetchedMovies)
             }
-            catch(error){alert('error')}
+            catch(error){Notiflix.Notify.failure('Error')}
         }
      }
      getMovies()

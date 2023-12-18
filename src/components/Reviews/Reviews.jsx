@@ -4,7 +4,7 @@ import * as API from '../../services/movies-api'
 import css from './Reviews.module.css'
 
 
-export const Reviews = () =>{
+const Reviews = () =>{
     const {movieId} = useParams()
     const [reviews, setReviews] = useState([])
     const effectRun = useRef(true)
@@ -36,3 +36,5 @@ export const Reviews = () =>{
         </div>
     )
 }   
+
+export default Reviews

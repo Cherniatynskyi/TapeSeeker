@@ -1,6 +1,7 @@
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom'
 import {useState, useEffect, useRef, Suspense} from 'react'
 import * as API from '../../services/movies-api'
+import Notiflix from 'notiflix';
 
 import css from './MovieDetails.module.css'
 
@@ -21,7 +22,7 @@ const MovieDetails = () =>{
                 const fetchedMovie = await API.getMovieDetails(movieId)
                 setMovie(fetchedMovie)
             }
-            catch(error){alert('error')}
+            catch(error){Notiflix.Notify.failure('Error')}
         }
      }
      getMovie()

@@ -5,7 +5,7 @@ import * as API from '../../services/movies-api'
 import css from './Cast.module.css'
 
 
-export const Cast = () =>{
+const Cast = () =>{
     const {movieId} = useParams()
     const [cast, setCast] = useState(null)
     const effectRun = useRef(true)
@@ -42,3 +42,5 @@ export const Cast = () =>{
     </>)
 }   
 
+
+export default Cast

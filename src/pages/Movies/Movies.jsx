@@ -3,18 +3,18 @@ import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
 import {useSearchParams, useLocation} from 'react-router-dom'
 import { MoviesList } from "components/MoviesList/MoviesList"
+import Notiflix from 'notiflix';
 
 const Movies = () =>{
     const [searchResult, setSearchResult] = useState(null)
     const effectRun = useRef(false)
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
-    const q = searchParams.get('q')
 
     useEffect(() => {
         const getMovie = async () =>{
            if(effectRun.current){
-            console.log(searchParams.get('q'))
+            const q = searchParams.get('q')
                try{
                     if(q == null){
                         return
@@ -22,12 +22,12 @@ const Movies = () =>{
                    const fetchedMovie = await API.searchMovies(q)
                    setSearchResult(fetchedMovie)
                }
-               catch(error){alert('error')}
+               catch(error){Notiflix.Notify.failure('Error')}
            }
            effectRun.current = true
         }
         getMovie()
-       }, [q, searchParams])
+       }, [searchParams])
 
     const formHandler = ({ query }) => {
         setSearchParams({q: query})

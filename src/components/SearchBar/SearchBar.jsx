@@ -1,5 +1,6 @@
 import { useState } from "react";
 import css from './SearchBar.module.css'
+import Notiflix from 'notiflix';
 
 export const SearchBar = ({onSubmit}) => {
     const [query, setQuery] = useState('')
@@ -10,11 +11,11 @@ export const SearchBar = ({onSubmit}) => {
 
 
     const handleSubmit = (e) => {
+        e.preventDefault()
         if (!query) {
-        alert("Enter your search term")
+        Notiflix.Notify.failure('Enter your search term')
         return
     }
-        e.preventDefault()
         onSubmit({query})
     }
 
