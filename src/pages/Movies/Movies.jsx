@@ -12,9 +12,9 @@ const Movies = () =>{
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
+        const q = searchParams.get('q')
         const getMovie = async () =>{
            if(effectRun.current){
-            const q = searchParams.get('q')
                try{
                     if(q == null){
                         return
