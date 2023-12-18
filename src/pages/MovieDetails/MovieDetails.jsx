@@ -32,7 +32,7 @@ const MovieDetails = () =>{
         <>
             <Link className={css.backButton} to={backLinkLocation.current}>Back to movies</Link>
             <div className={css.detailsContainer}>
-                <img src={poster_path && `https://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
+                <img src={poster_path ? `https://image.tmdb.org/t/p/w300${poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={title} />
                 <div>
                     <p>{title}</p>
                     <p>Score: {vote_average !== 0 ? Math.ceil((vote_average)*10)/10 : 'No reviews yet'}</p>

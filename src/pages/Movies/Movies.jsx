@@ -7,13 +7,14 @@ import { MoviesList } from "components/MoviesList/MoviesList"
 const Movies = () =>{
     const [searchResult, setSearchResult] = useState(null)
     const effectRun = useRef(false)
+    const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
     const q = searchParams.get('q')
-    const location = useLocation()
 
     useEffect(() => {
         const getMovie = async () =>{
            if(effectRun.current){
+            console.log(searchParams.get('q'))
                try{
                     if(q == null){
                         return
@@ -26,7 +27,7 @@ const Movies = () =>{
            effectRun.current = true
         }
         getMovie()
-       }, [q])
+       }, [q, searchParams])
 
     const formHandler = ({ query }) => {
         setSearchParams({q: query})
