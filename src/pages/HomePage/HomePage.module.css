@@ -1,12 +1,4 @@
-.moviesList{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
 
-    list-style: none;
-    padding: 0;
-}
 
 .homepageTitle{
     font-size: 40px;

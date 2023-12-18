@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef} from "react"
 import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
-import {Link, useSearchParams, useLocation} from 'react-router-dom'
-import css from '../HomePage/HomePage.module.css'
+import {useSearchParams, useLocation} from 'react-router-dom'
+import { MoviesList } from "components/MoviesList/MoviesList"
 
 const Movies = () =>{
     const [searchResult, setSearchResult] = useState(null)
@@ -19,7 +19,6 @@ const Movies = () =>{
                         return
                     }
                    const fetchedMovie = await API.searchMovies(q)
-                   console.log(fetchedMovie)
                    setSearchResult(fetchedMovie)
                }
                catch(error){alert('error')}
@@ -37,16 +36,7 @@ const Movies = () =>{
     return ( 
         <div>
             <SearchBar onSubmit={formHandler}/>
-            <ul className={css.moviesList}>
-                {searchResult ? searchResult.map(movie => {
-                    return(
-                     <Link key={movie.id} to={`${movie.id}`} state={{from: location}}>
-                        <li>
-                            <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title}/>
-                        </li>
-                    </Link>)
-                }): <h1 className={css.title}>Search for Movies</h1>}
-            </ul>   
+            <MoviesList movies={searchResult} location={location}/> 
         </div>)
 }   
 

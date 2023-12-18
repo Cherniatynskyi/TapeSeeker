@@ -11,7 +11,7 @@ const MovieDetails = () =>{
     const effectRun = useRef(true)
     const {title, vote_average, poster_path, genres, overview} = movie
     const location = useLocation()
-    const backLinkLocation = useRef(location.state?.from ?? '/movies')
+    const backLinkLocation = useRef(location.state?.from ?? '/')
 
     useEffect(() => {
      const getMovie = async () =>{

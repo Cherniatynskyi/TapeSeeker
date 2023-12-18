@@ -1,13 +1,15 @@
 import * as API from '../../services/movies-api'
 import {useState, useEffect, useRef} from 'react'
-import {Link} from 'react-router-dom'
-
+import { MoviesList } from 'components/MoviesList/MoviesList'
+import {useLocation} from 'react-router-dom'
 import css from './HomePage.module.css'
+
 
 const HomePage = () => {
 
     const [movies, setMovies] = useState([])
     const effectRun = useRef(true)
+    const location = useLocation()
 
     useEffect(() => {
      const getMovies = async () =>{
@@ -27,16 +29,7 @@ const HomePage = () => {
     return(
         <>
             <div className={css.homepageTitle}>Trending movies</div>
-            <ul className={css.moviesList}>
-                {movies.map(movie => {
-                    return(
-                     <Link key={movie.id} to={`movies/${movie.id}`}>
-                        <li>
-                            <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title}/>
-                        </li>
-                    </Link>)
-                })}
-            </ul>
+            <MoviesList movies={movies} location={location}/>
         </>
     )
 }
