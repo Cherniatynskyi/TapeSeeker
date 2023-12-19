@@ -1,7 +1,6 @@
 import { lazy} from 'react';
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, Navigate} from 'react-router-dom'
 import { Layout } from './Layout';
-import { NotFound } from './NotFound';
 
 const HomePage = lazy(() => import ('../pages/HomePage/HomePage'))
 const Movies = lazy(() => import ('../pages/Movies/Movies'))
@@ -19,7 +18,7 @@ function App() {
               <Route path='cast' element={<Cast/>}/>
               <Route path='reviews' element={<Reviews/>}/>
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/" replace/>} />
         </Route>
       </Routes>
 

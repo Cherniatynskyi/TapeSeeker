@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react"
+import { useState, useEffect} from "react"
 import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
 import {useSearchParams, useLocation} from 'react-router-dom'
@@ -7,24 +7,21 @@ import Notiflix from 'notiflix';
 
 const Movies = () =>{
     const [searchResult, setSearchResult] = useState(null)
-    const effectRun = useRef(false)
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         const q = searchParams.get('q')
         const getMovie = async () =>{
-           if(effectRun.current){
+           if(!q){
+            return
+           }
                try{
-                    if(q == null){
-                        return
-                    }
                    const fetchedMovie = await API.searchMovies(q)
                    setSearchResult(fetchedMovie)
+                   console.log("Fetched")
                }
                catch(error){Notiflix.Notify.failure('Error')}
-           }
-           effectRun.current = true
         }
         getMovie()
        }, [searchParams])
