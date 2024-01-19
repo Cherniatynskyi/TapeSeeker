@@ -7,7 +7,7 @@ export const Layout = () =>{
         <>
             <nav>
                 <ul className={css.navList}>
-                    <li className={css.navButton}><NavLink  to='/'>Home Page</NavLink></li>
+                    <li className={css.navButton}><NavLink style={{color: "green"}}  to='/'>Home Page</NavLink></li>
                     <li className={css.navButton}><NavLink to='/movies'>Movies</NavLink></li> 
                 </ul>    
             </nav>
