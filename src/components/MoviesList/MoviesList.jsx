@@ -10,6 +10,7 @@ export const MoviesList = ({movies, location}) =>{
                 <li>
                     <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
                 </li>
+                {console.log(movies)}
             </Link>)
         }): <h1 className={css.title}>Search for Movies</h1>}
     </ul>  )

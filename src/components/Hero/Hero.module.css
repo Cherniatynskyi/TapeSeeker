@@ -1,0 +1,45 @@
+.heroContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 460px;
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.heroTextContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    p{
+        color: white;
+        font-size: 32px;
+        margin: 0;
+        margin-bottom: 15px;
+    }
+}
+
+.heroButton{
+    display: flex;
+    justify-content: center;
+
+    background-color: rgb(233, 219, 91);
+    width: 100%;
+    padding: 15px;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+}

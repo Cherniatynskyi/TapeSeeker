@@ -1,3 +1,13 @@
+.nav{
+    position: fixed;
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+}
+
+.main{
+    padding: 100px 20px;
+}
+
 .navList{
     display: flex;
     gap: 20px;
@@ -26,9 +36,10 @@
 
 .logoContainer{
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10px;
+    padding: 20px 20px 10px 20px;
 }
 
 .navHomePage{
@@ -38,7 +49,7 @@
 }
 
 .logo{
-    width: 50px
+    width: 50px;
 }
 
 .logoText{
@@ -62,8 +73,8 @@
     height: 30px;
     background-color: inherit;
     position: absolute;
-    top: 40px;
-    right: 10px;
+    top: 30px;
+    right: 20px;
 
 }
 

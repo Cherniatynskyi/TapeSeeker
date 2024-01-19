@@ -2,8 +2,9 @@ import * as API from '../../services/movies-api'
 import {useState, useEffect, useRef} from 'react'
 import { MoviesList } from 'components/MoviesList/MoviesList'
 import {useLocation} from 'react-router-dom'
-import css from './HomePage.module.css'
 import Notiflix from 'notiflix';
+import { Hero } from 'components/Hero/Hero'
+import { TrendingSlider } from 'components/TrendingSlider/TrendingSlider';
 
 
 const HomePage = () => {
@@ -29,8 +30,10 @@ const HomePage = () => {
    
     return(
         <>
-            <div className={css.homepageTitle}>Trending movies</div>
+            <Hero movie={movies[0]}/>
+            <TrendingSlider movies={movies} />
             <MoviesList movies={movies} location={location}/>
+            
         </>
     )
 }
