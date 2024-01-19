@@ -1,22 +1,25 @@
 .navList{
     display: flex;
     gap: 20px;
+    list-style: none;
 }
 
 .navButton{
     display: inline-flex;
+
+}
+
+.navLink{
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 8px;
     list-style: none;
 
-    & a{
-        text-decoration: none;
-        border-radius: 6px;
-        padding: 8px;
+    color: white;
+    background-color: brown;
 
-        color: white;
-        background-color: brown;
-
-        &:hover{
-            background-color: rgb(130, 25, 25);
-        }
+    &:hover{
+        background-color: rgb(130, 25, 25);
     }
+
 }
