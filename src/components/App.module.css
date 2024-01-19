@@ -2,12 +2,12 @@
     display: flex;
     gap: 20px;
     list-style: none;
+
+    & li{
+        padding: 8px 0;
+    }
 }
 
-.navButton{
-    display: inline-flex;
-
-}
 
 .navLink{
     text-decoration: none;
@@ -22,4 +22,65 @@
         background-color: rgb(130, 25, 25);
     }
 
+}
+
+.logoContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+.navHomePage{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo{
+    width: 50px
+}
+
+.logoText{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    color: white;
+    margin-left: 10px;
+}
+
+.menu{
+    position: relative;
+    top: 0;
+    right: 0;
+    background-color: black;
+}
+
+
+.button{
+    display: block;
+    width: 50px;
+    height: 30px;
+    background-color: inherit;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+
+}
+
+.menuWrap{
+    background-color: white;
+    padding: 20px;
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
