@@ -1,7 +1,5 @@
 import * as API from '../../services/movies-api'
 import {useState, useEffect, useRef} from 'react'
-import { MoviesList } from 'components/MoviesList/MoviesList'
-import {useLocation} from 'react-router-dom'
 import Notiflix from 'notiflix';
 import { Hero } from 'components/Hero/Hero'
 import { TrendingSlider } from 'components/TrendingSlider/TrendingSlider';
