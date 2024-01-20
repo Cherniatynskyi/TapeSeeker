@@ -29,6 +29,7 @@ class Layout extends React.Component{
     render (){
         return(
             <>
+            <div className={css.main}>
             <nav className={css.nav}>
                 <div className={css.logoContainer}>
                     <NavLink  to='/' className={css.navHomePage}>
@@ -36,7 +37,7 @@ class Layout extends React.Component{
                         <span className={css.logoText}>TapeSeeker</span>
                     </NavLink>
                     <Menu isOpen={this.state.menuOpen}
-                      onStateChange={(state) => this.handleStateChange(state)} className={css.menu} right width={ '70%' }
+                      onStateChange={(state) => this.handleStateChange(state)} className={css.menu} right width={ '20%' }
                       burgerButtonClassName={css.button }
                       menuClassName={css.menuWrap}
                       overlayClassName={css.overlay}
@@ -46,6 +47,7 @@ class Layout extends React.Component{
                     </Menu>
                 </div>
             </nav>
+            </div>
             <main className={css.main}>
                 <Suspense fallback={<div>Loading.....</div>}>
                     <Outlet/>

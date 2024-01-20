@@ -5,13 +5,14 @@ import {useLocation} from 'react-router-dom'
 import Notiflix from 'notiflix';
 import { Hero } from 'components/Hero/Hero'
 import { TrendingSlider } from 'components/TrendingSlider/TrendingSlider';
+import css from './HomePage.module.css'
 
 
 const HomePage = () => {
 
     const [movies, setMovies] = useState([])
+    const [trendTV, setTrendTv] = useState([])
     const effectRun = useRef(true)
-    const location = useLocation()
 
     useEffect(() => {
      const getMovies = async () =>{
@@ -20,6 +21,9 @@ const HomePage = () => {
             try{
                 const fetchedMovies = await API.getTrandMovies()
                 setMovies(fetchedMovies)
+
+                const fetchedTV = await API.getTrendTV()
+                setTrendTv(fetchedTV)
             }
             catch(error){Notiflix.Notify.failure('Error')}
         }
@@ -30,9 +34,14 @@ const HomePage = () => {
    
     return(
         <>
-            <Hero movie={movies[0]}/>
-            <TrendingSlider movies={movies} />
-            <MoviesList movies={movies} location={location}/>
+            <Hero movies={movies}/>
+            <div className={css.contentPage}>
+                <div className={css.sectionSign}>Movies</div>
+                <h2 className={css.trendingTitle}>Trending Movies now</h2>
+                <TrendingSlider movies={movies} />
+                <h2 className={css.trendingTitle}>Trending TV series now</h2>
+                <TrendingSlider movies={trendTV} />
+            </div>
             
         </>
     )

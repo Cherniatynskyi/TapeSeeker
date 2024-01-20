@@ -1,6 +1,35 @@
-.homepageTitle{
-    font-size: 40px;
-    color: white;
-    text-align: center;
-    padding: 40px;
+.contentPage{
+    border-radius: 12px;
+    border: 1px solid #262626;
+    margin-top: 40px;
 }
+
+.sectionSign{
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    background-color: rgb(243, 208, 86);
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 12px;
+
+    margin-left: 25px;
+    transform: translateY(-50%);
+}
+
+.trendingTitle{
+    color: white;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+
+    margin-left: 20px;
+}
+
