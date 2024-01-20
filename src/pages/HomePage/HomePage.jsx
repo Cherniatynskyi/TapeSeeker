@@ -2,43 +2,83 @@ import * as API from '../../services/movies-api'
 import {useState, useEffect, useRef} from 'react'
 import Notiflix from 'notiflix';
 import { Hero } from 'components/Hero/Hero'
-import { TrendingSlider } from 'components/TrendingSlider/TrendingSlider';
+import { MoviesSlider } from 'components/MoviesSlider/MoviesSlider';
 import css from './HomePage.module.css'
 
 
 const HomePage = () => {
 
-    const [movies, setMovies] = useState([])
-    const [trendTV, setTrendTv] = useState([])
+    const [trendMov, setTrendMov] = useState([])
+    const [upcMov, setUpcMov] = useState([])
+    const [topRatedMov, setTopRatedMov] = useState([])
+
+    const [trendTv, setTrendTv] = useState([])
+    const [airingTv, setAiringTv] = useState([])
+    const [topRatedTv, setTopRatedTv] = useState([])
     const effectRun = useRef(true)
 
     useEffect(() => {
-     const getMovies = async () =>{
+     const getMoviesFunc = async () =>{
         if(effectRun.current){
             effectRun.current = false
             try{
-                const fetchedMovies = await API.getTrandMovies()
-                setMovies(fetchedMovies)
+                const trendingMovies = await API.getMovies("/trending/movie/day")
+                setTrendMov(trendingMovies)
 
-                const fetchedTV = await API.getTrendTV()
-                setTrendTv(fetchedTV)
+                const upcomingMov = await API.getMovies("/movie/upcoming")
+                setUpcMov(upcomingMov)
+
+                const trMov = await API.getMovies("/movie/top_rated")
+                setTopRatedMov(trMov)
+
+                const trendingTV = await API.getMovies("/trending/tv/day")
+                setTrendTv(trendingTV)
+
+                const airTV = await API.getMovies("/tv/airing_today")
+                setAiringTv(airTV)
+
+                const topTv = await API.getMovies("/tv/top_rated")
+                setTopRatedTv(topTv)
             }
             catch(error){Notiflix.Notify.failure('Error')}
         }
      }
-     getMovies()
+     getMoviesFunc()
     }, [])
     
    
     return(
         <>
-            <Hero movies={movies}/>
+            <Hero movies={trendMov}/>
             <div className={css.contentPage}>
                 <div className={css.sectionSign}>Movies</div>
                 <h2 className={css.trendingTitle}>Trending Movies now</h2>
-                <TrendingSlider movies={movies} />
+                <MoviesSlider  movies={trendMov} />
+                <h2 className={css.trendingTitle}>Upcoming</h2>
+                <MoviesSlider  movies={upcMov} />
+                <h2 className={css.trendingTitle}>Top Rated</h2>
+                <MoviesSlider  movies={topRatedMov} />
+            </div>
+            <div className={css.contentPage}>
+                <div className={css.sectionSign}>TV Series</div>
                 <h2 className={css.trendingTitle}>Trending TV series now</h2>
-                <TrendingSlider movies={trendTV} />
+                <MoviesSlider  movies={trendTv} />
+                <h2 className={css.trendingTitle}>Airing now</h2>
+                <MoviesSlider  movies={airingTv} />
+                <h2 className={css.trendingTitle}>Top Rated Series</h2>
+                <MoviesSlider  movies={topRatedTv} />
+            </div>
+            <div className={css.heroAddPosterContainer}>
+                <div className={css.heroAddPoster}>
+                    <div className={css.heroPosterTextContainer}>
+                        <div>
+                            <h2>Join our community right now</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum unde maiores praesentium?</p>
+                        </div>
+                        <button className={css.posterButton}>Join now !</button>
+                    </div>
+                    
+                </div>
             </div>
             
         </>

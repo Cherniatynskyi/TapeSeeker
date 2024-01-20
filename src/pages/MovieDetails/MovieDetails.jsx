@@ -35,6 +35,7 @@ const MovieDetails = () =>{
             <div className={css.detailsContainer}>
                 <img src={poster_path ? `https://image.tmdb.org/t/p/w300${poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={title} />
                 <div>
+                    {console.log(movie)}
                     <p>{title}</p>
                     <p>Score: {vote_average !== 0 ? Math.ceil((vote_average)*10)/10 : 'No reviews yet'}</p>
                     <p>Overview</p>
