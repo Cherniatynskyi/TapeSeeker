@@ -67,20 +67,7 @@ const HomePage = () => {
                 <MoviesSlider  movies={airingTv} />
                 <h2 className={css.trendingTitle}>Top Rated Series</h2>
                 <MoviesSlider  movies={topRatedTv} />
-            </div>
-            <div className={css.heroAddPosterContainer}>
-                <div className={css.heroAddPoster}>
-                    <div className={css.heroPosterTextContainer}>
-                        <div>
-                            <h2>Join our community right now</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum unde maiores praesentium?</p>
-                        </div>
-                        <button className={css.posterButton}>Join now !</button>
-                    </div>
-                    
-                </div>
-            </div>
-            
+            </div>  
         </>
     )
 }

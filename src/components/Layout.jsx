@@ -6,6 +6,8 @@ import logo from '../images/logo.png'
 import { slide as Menu } from 'react-burger-menu'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
+import { FooterPost } from "./FooterPost/FooterPost";
+import { Footer } from "./Footer/Footer";
 
 class Layout extends React.Component{
     constructor (props) {
@@ -29,7 +31,6 @@ class Layout extends React.Component{
     render (){
         return(
             <>
-            <div className={css.main}>
             <nav className={css.nav}>
                 <div className={css.logoContainer}>
                     <NavLink  to='/' className={css.navHomePage}>
@@ -47,12 +48,21 @@ class Layout extends React.Component{
                     </Menu>
                 </div>
             </nav>
-            </div>
-            <main className={css.main}>
+            <main className={css.content}>
                 <Suspense fallback={<div>Loading.....</div>}>
                     <Outlet/>
                 </Suspense>
             </main>
+            <footer>
+              <div className={css.content}>
+                <FooterPost/>
+              </div>
+              <div className={css.footerB}>
+                <div className={css.content}>
+                <Footer/>
+                </div>
+              </div>
+            </footer>
         </>
         )
         

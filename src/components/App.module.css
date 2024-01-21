@@ -1,5 +1,6 @@
 .nav{
     max-width: 1440px;
+    margin: auto;
     width: 100%;
     background-color: rgb(20, 20, 20);
 
@@ -8,7 +9,7 @@
     justify-content: center;
 }
 
-.main{
+.content{
     max-width: 1440px;
     margin: auto;
 }
@@ -101,4 +102,8 @@
     width: 100%;
     top: 0;
     left: 0;
+}
+
+.footerB{
+    background-color: #0f0f0f;
 }
