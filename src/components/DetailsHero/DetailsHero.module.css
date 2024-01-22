@@ -1,26 +1,53 @@
 .heroContainer{
+    position: relative;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     height: 700px;
     background-size: cover;
     background-position: end;
     background-color: black;
     border-radius: 16px;
     margin-top: 40px;
+    padding: 0 6%;
 }
 
+.backButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    border: 1px solid  #262626;
+    background: #191919;
+    border-radius: 6px;
+    padding: 10px 15px;
+    z-index: 999;
+    opacity: 0.4;
 
+    top: 5%;
+    left: 6%;
+    &:hover{
+        background-color: rgb(20, 20, 20);
+        opacity: 0.9;
+    }
+}
+
+.poster{
+    width: 300px;
+    border-radius: 20px;
+}
 
 .heroTextContainer{
-    max-width: 960px;
+    max-width: 600px;
     display: flex;
+    align-self: end;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     padding: 40px;
-    padding-bottom: 100px;
+    padding-bottom: 160px;
 
 }
 
@@ -103,29 +130,16 @@
     
 }
 
+.companiesContainer{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    gap: 60px;
 
-.slider{
-    & ul{
-
-        padding-bottom: 30px;
-
-        li[class="slick-active"] button::before{
-            background-color: rgb(243, 208, 86);
-            width: 130%;
-            margin-left: -15%;
-        }
-
-       button::before{
-            content: '';
-            width: 100%;
-            height: 5px;
-            border-radius: 100px;
-            background-color: #5c5c5c
-       }
-    }
+    padding-top: 100px;
 }
 
-
-
-
-
+.compLogos{
+    width: 100px;
+    filter: grayscale(100%);
+}

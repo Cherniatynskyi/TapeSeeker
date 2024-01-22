@@ -10,6 +10,8 @@ import { MdLanguage } from "react-icons/md";
 
 export const MoviesSlider = ({movies}) =>{
 
+
+
     const settings = {
         dots: true,
         infinite: true,
@@ -29,7 +31,7 @@ export const MoviesSlider = ({movies}) =>{
                         <Link key={movie.id} className={css.link} to={`/movies/${movie.id}`}>
                         <div className={css.trendingItem}>
                             <div className={css.trendingItemContainer}>
-                                <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
+                                <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
                                 <p className={css.movieTitle}>{movie.title ? movie.title : movie.name}</p>
                                 <div className={css.thumbsContainer}>
                                     <span> <CiCalendarDate size="1.2em" /> {splitted ? splitted[0] : '2023'}</span>
