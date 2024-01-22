@@ -1,0 +1,95 @@
+.infoContainer{
+    position: relative;
+    gap: 20px;
+}
+
+.mainInfo{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 65%;
+}
+
+.mainInfoBox{
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+
+    padding: 40px;
+
+    span{
+        font-family: Manrope;
+        color: #999;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+
+    p{
+        color: white;
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+    
+}
+
+.articleInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 27%;
+    padding: 40px;
+
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+    flex-basis: 50%;
+
+    p {
+        color: #999;
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+
+    .detailsYear{
+        color: white;
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+    }
+
+    .progressBar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 50px;
+        height: 50px;
+
+        margin-top: 20px;
+        border-radius: 50%;
+     
+    }
+
+    span{
+        color: white;
+    }
+}
+
+.slider{
+    color: white;
+}

@@ -34,7 +34,7 @@ export const DetailsHero = ({movie})=>{
                             </div>
                             <div className={css.companiesContainer}>
                                 {movie.production_companies && movie.production_companies.map(comp =>{
-                                    return <img className={css.compLogos} src={`https://image.tmdb.org/t/p/w300${comp.logo_path}`} alt="" />
+                                    return <img key={comp.id} className={css.compLogos} src={`https://image.tmdb.org/t/p/w300${comp.logo_path}`} alt="" />
                                 })}
                             </div>
                         </div>

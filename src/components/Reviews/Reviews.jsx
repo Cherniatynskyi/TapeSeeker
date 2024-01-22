@@ -25,6 +25,7 @@ const Reviews = () =>{
 
     return (
         <div>
+            {console.log(reviews)}
             <ul className={css.reviewsContainer}>
                 {reviews.length !== 0 ? reviews.map(review => {
                     return(<li key={review.id}>

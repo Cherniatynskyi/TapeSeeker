@@ -33,14 +33,15 @@ const MovieDetails = () =>{
     return (
         <>
             <DetailsHero movie={movie}/>
-            <DetailsInfo movie={movie}/>
-            <ul>
-                <li className={css.detailsMenuButton}><Link to='cast'>Cast</Link></li>
-                <li className={css.detailsMenuButton}><Link to='reviews'>Reviews</Link></li>
-            </ul>
-            <Suspense fallback={<div>Loading....</div>}>
-                <Outlet/>
-            </Suspense>
+    
+                    <DetailsInfo movie={movie}/>
+                    <ul>
+                        <li className={css.detailsMenuButton}><Link to='reviews'>Reviews</Link></li>
+                    </ul>
+                    <Suspense fallback={<div>Loading....</div>}>
+                        <Outlet/>
+                    </Suspense>
+            
         </>
         
     )
