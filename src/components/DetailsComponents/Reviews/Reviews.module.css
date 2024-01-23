@@ -1,0 +1,95 @@
+.reviewsContainer{
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+    list-style: none;
+
+    padding: 40px;
+    width: 59.5%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    & li{
+        max-width: 1000px;
+    }
+    
+}
+
+.reviewTitleWrap{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.userAvatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid  #262626;;
+    background:  #1A1A1A;
+
+    img{
+        width: 80px;
+    }
+}
+
+.reviewBox{
+    padding: 15px;
+    background-color: #202020;
+    border: 1px solid #262626;
+    border-radius: 16px;
+}
+
+.userInfoWrap{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.authorName{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.authorUsername{
+    color: #999;
+}
+
+.reviewText{
+    color: rgb(182, 182, 182);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; 
+
+    margin-top: 25px;
+}
+
+.progressBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    
+    color: white;
+}
+
+.noReviewsText{
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

@@ -1,6 +1,8 @@
-import Cast from 'components/Cast/Cast'
+import Cast from 'components/DetailsComponents/Cast/Cast'
 import css from './DetailsInfo.module.css'
+import { Link } from 'react-router-dom';
 import { FaRegCalendar } from "react-icons/fa6";
+import VideosSlider from './VideosSlider';
 
 
 export const DetailsInfo = ({movie, movieVids}) =>{
@@ -22,17 +24,18 @@ export const DetailsInfo = ({movie, movieVids}) =>{
                     <Cast></Cast>
                 </div>
                 <div className={css.mainInfoBox}>
-                    <span>Cast</span>
+                    <span>Videos</span>
                     {console.log(movieVids)}
-                    <div>
-                        {movieVids?.results?.map(vid =>{
-                            return (
-                                <iframe key={vid.key} title={vid.name} width="420" height="315"
-                                    src={`https://www.youtube.com/embed/${vid.key}`}>
-                                </iframe>                      
-                            )
-                        })}
+                    <div className={css.VideoSliderWrap}>
+                        <VideosSlider movieVids={movieVids}></VideosSlider>
                     </div>
+                  
+                    
+                </div>
+                <div className={css.mainInfoBox}>
+                    <span>Reviews</span>
+                    
+                    <Link className={css.reviewsLink} to='reviews'>Click to see reviews</Link>
                     
                 </div>
             </div>

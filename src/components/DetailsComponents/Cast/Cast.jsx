@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
-import * as API from '../../services/movies-api'
+import * as API from '../../../services/movies-api'
 import Slider from "react-slick";
 
 import css from './Cast.module.css'
 
 
-export const Cast = () =>{
+const Cast = () =>{
 
     const settings = {
         dots: false,

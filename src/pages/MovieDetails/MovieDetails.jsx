@@ -1,11 +1,10 @@
-import { Link, useParams, Outlet } from 'react-router-dom'
+import { useParams, Outlet } from 'react-router-dom'
 import {useState, useEffect, useRef, Suspense} from 'react'
 import * as API from '../../services/movies-api'
 import Notiflix from 'notiflix';
 
-import css from './MovieDetails.module.css'
-import { DetailsHero } from '../../components/DetailsHero/DetailsHero';
-import { DetailsInfo } from 'components/DetailsInfo/DetailsInfo';
+import { DetailsHero } from '../../components/DetailsComponents/DetailsHero/DetailsHero';
+import { DetailsInfo } from 'components/DetailsComponents/DetailsInfo/DetailsInfo';
 
 const MovieDetails = () =>{
 
@@ -16,7 +15,7 @@ const MovieDetails = () =>{
 
 
     useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        window.scrollTo({top: 0, left: 0});
      const getMovie = async () =>{
         if(effectRun.current){
             effectRun.current = false
@@ -36,15 +35,14 @@ const MovieDetails = () =>{
 
     return (
         <>
-            <DetailsHero movie={movie}/>
-    
-                    <DetailsInfo movie={movie} movieVids = {movieVids}/>
-                    <ul>
-                        <li className={css.detailsMenuButton}><Link to='reviews'>Reviews</Link></li>
-                    </ul>
-                    <Suspense fallback={<div>Loading....</div>}>
-                        <Outlet/>
-                    </Suspense>
+            <DetailsHero movie={movie}/>    
+            <DetailsInfo movie={movie} movieVids = {movieVids}/>
+                <div>
+                    
+                </div>
+                <Suspense fallback={<div>Loading....</div>}>
+                    <Outlet/>
+                </Suspense>
             
         </>
         
