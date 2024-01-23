@@ -54,6 +54,60 @@
     background:  #1A1A1A;
     flex-basis: 50%;
 
+    .itemsList{
+        display: flex;
+        margin: 0;
+        padding: 0;
+
+        gap: 10px;
+    }
+
+    .itemWrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 6px;
+        border: 1px solid var(--Black-15, #262626);
+        background: var(--Black-08, #141414);
+
+        color: white;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+
+        padding: 6px 12px;
+    }
+
+    .companiesList{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .compWrap{
+        height: 50px;
+        padding: 15px 20px;
+        border-radius: 16px;
+    }
+
+    .imgWrap{
+        height: 100%;
+        width: 70px;
+        background-color: rgb(62, 62, 62);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid rgb(140, 140, 140);
+        border-radius: 24px;
+    }
+
+    .companyImg{
+        width: 40px;
+    }
+
     p {
         color: #999;
         font-family: Manrope;

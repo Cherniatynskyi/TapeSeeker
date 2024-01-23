@@ -10,6 +10,7 @@ import { DetailsInfo } from 'components/DetailsInfo/DetailsInfo';
 const MovieDetails = () =>{
 
     const [movie, setMovie] = useState({})
+    const [movieVids, setMovieVids] = useState({})
     const {movieId} = useParams()
     const effectRun = useRef(true)
 
@@ -22,6 +23,9 @@ const MovieDetails = () =>{
             try{
                 const fetchedMovie = await API.getMovieDetails(movieId)
                 setMovie(fetchedMovie)
+
+                const movieVideos = await API.getMovieDetails(movieId, '/videos')
+                setMovieVids(movieVideos)
             }
             catch(error){Notiflix.Notify.failure('Error')}
         }
@@ -34,7 +38,7 @@ const MovieDetails = () =>{
         <>
             <DetailsHero movie={movie}/>
     
-                    <DetailsInfo movie={movie}/>
+                    <DetailsInfo movie={movie} movieVids = {movieVids}/>
                     <ul>
                         <li className={css.detailsMenuButton}><Link to='reviews'>Reviews</Link></li>
                     </ul>
