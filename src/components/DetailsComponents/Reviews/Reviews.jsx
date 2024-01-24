@@ -53,7 +53,7 @@ const Reviews = () =>{
                                 <span>{rating?.toFixed(1)}</span>
                             </div>
                         </div>
-                        <p className={css.reviewText}>{`${review.content}`}</p>
+                        <p className={css.reviewText}>{review.content}</p>
                     </li>)
                 }): <p className={css.noReviewsText}>No reviews yet <PiMaskSadFill size="1.2em" color="white"/></p>}
             </ul>

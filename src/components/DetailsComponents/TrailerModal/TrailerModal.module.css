@@ -1,0 +1,53 @@
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1200;
+}
+
+.Modal {
+    max-width: 80%;
+    height: 140px;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+
+    & .closeButton{
+        position: absolute;
+        right: 8px;
+        top: 10px;
+
+        cursor: pointer;
+        background-color: inherit;
+        border: none;
+
+        &:hover, &:focus{
+            .closeIcon{
+                fill: black;
+            }
+        }
+    }
+}
+
+.frameStyle{
+    border: none;
+    width: 1000px;
+    height: 600px;
+}
+
+.modalCloseButton{
+    position: absolute;
+    top: 12%;
+    right: 14%;
+
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    
+}

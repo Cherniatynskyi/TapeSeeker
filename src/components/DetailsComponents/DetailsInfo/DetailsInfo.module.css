@@ -39,6 +39,10 @@
     
 }
 
+.castInfoBox{
+    padding-bottom: 70px;
+}
+
 .articleInfo{
     display: flex;
     flex-direction: column;

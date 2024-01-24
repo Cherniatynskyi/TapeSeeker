@@ -5,16 +5,30 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa6";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useRef} from 'react';
-import { useLocation } from 'react-router-dom';
 
-export const DetailsHero = ({movie})=>{
+import { useRef, useState} from 'react';
+import { useLocation } from 'react-router-dom';
+import { TrailerModal } from '../TrailerModal/TrailerModal';
+
+
+export const DetailsHero = ({movie, movieVids})=>{
     const location = useLocation()
     const backLinkLocation = useRef(location.state?.from ?? '/')
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+      
+    const OpenModal = () =>{
+        setModalIsOpen(true)
+        
+        
+      }
+  
+      const closeModal = () => {
+        setModalIsOpen(false)
+        
+     }
 
     return(<>
                     <div>
-                        {console.log(movie)}
                         <div className={css.heroContainer} style={{backgroundImage: `linear-gradient(0deg, #141414 10%, rgba(20, 20, 20, .7) 100%), url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")`}}>
                             <Link className={css.backButton} to={backLinkLocation.current}><IoMdArrowRoundBack /> Back to movies</Link>
                             <div className={css.posterWrap}>
@@ -24,7 +38,8 @@ export const DetailsHero = ({movie})=>{
                                 <h2 className={css.heroTitle}>{movie.title ? movie.title : movie.name}</h2>
                                 <p className={css.heroDesc}>{movie.overview}</p>
                                 <div className={css.heroNav}>
-                                    < Link className={css.heroButton} to={`/movies/${movie.id}`}><FaCirclePlay size="1.2em"/> Click to view</Link>
+                                    < button onClick={OpenModal} className={css.heroButton}><FaCirclePlay size="1.2em"/>View Trailer</button>
+                                    {modalIsOpen && <TrailerModal onClose={closeModal} movieVids={movieVids}></TrailerModal>}
                                     <div className={css.heroOptions}>
                                         <button className={css.heroOptionItem}><FaRegHeart className={css.heroIcon} size="1.3em" /></button>
                                         <button className={css.heroOptionItem}><FaRegClock className={css.heroIcon}  size="1.3em" /></button>

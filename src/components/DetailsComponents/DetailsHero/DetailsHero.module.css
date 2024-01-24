@@ -24,7 +24,7 @@
     border-radius: 6px;
     padding: 10px 15px;
     z-index: 999;
-    opacity: 0.4;
+    opacity: 0.8;
 
     top: 5%;
     left: 6%;
@@ -88,7 +88,6 @@
     gap: 10px;
 
     background-color: rgb(243, 208, 86);
-    max-width: 128px;
     padding: 15px;
     color: black;
     font-size: 15px;

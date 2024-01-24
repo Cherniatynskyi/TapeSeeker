@@ -35,7 +35,7 @@ const MovieDetails = () =>{
 
     return (
         <>
-            <DetailsHero movie={movie}/>    
+            <DetailsHero movie={movie} movieVids = {movieVids}/>    
             <DetailsInfo movie={movie} movieVids = {movieVids}/>
                 <div>
                     

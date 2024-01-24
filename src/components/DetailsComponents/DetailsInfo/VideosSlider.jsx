@@ -21,7 +21,7 @@ import css from './DetailsInfo.module.css'
                 <Slider className={css.slider} {...settings}>
                     {movieVids?.results?.map(vid =>{
                             return (
-                                <iframe className={css.frameStyle} key={vid.key} title={vid.name} allowfullscreen="true"
+                                <iframe className={css.frameStyle} key={vid.key} title={vid.name} allowFullScreen={true}
                                     src={`https://www.youtube.com/embed/${vid.key}`}>
                                 </iframe>                      
                             )

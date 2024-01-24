@@ -19,7 +19,7 @@ export const DetailsInfo = ({movie, movieVids}) =>{
                     <span>Description</span>
                     <p>{movie.overview}</p>
                 </div>
-                <div className={css.mainInfoBox}>
+                <div className={`${css.mainInfoBox} ${css.castInfoBox}`}>
                     <span>Cast</span>
                     <Cast></Cast>
                 </div>
