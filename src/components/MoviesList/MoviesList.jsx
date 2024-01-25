@@ -14,12 +14,12 @@ export const MoviesList = ({movies, location}) =>{
             return(
              <Link className={css.moviesListItem} key={movie.id} to={location.pathname === '/' ? `movies/${movie.id}`: `${movie.id}`} state={{from: location}}>
                 <li>
-                    <img className={css.img} src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
+                    <img className={css.img} src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
                     <p className={css.movieTitle} >{movie.title ? movie.title : movie.name}</p>
                         <div className={css.thumbsContainer}>
-                            <span> <CiCalendarDate size="1.2em" /> {splitted ? splitted[0] : '2023'}</span>
-                            <span> <MdStar size="1.2em" />{movie.vote_average.toFixed(1)}</span>
-                            <span> <MdLanguage size="1.2em" />{movie.original_language}</span>
+                            <span className={css.thumb}> <CiCalendarDate size="1.2em" /> {splitted ? splitted[0] : '2023'}</span>
+                            <span className={css.thumb}> <MdStar size="1.2em" />{movie.vote_average.toFixed(1)}</span>
+                            <span className={css.thumb}> <MdLanguage size="1.2em" />{movie.original_language}</span>
                         </div>
                 </li>
             </Link>)

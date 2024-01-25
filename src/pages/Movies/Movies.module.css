@@ -1,0 +1,45 @@
+.loadButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 30px;
+
+    background-color: rgb(243, 208, 86);
+    padding: 15px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(226, 189, 55);
+    }
+}
+
+.backToTopButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    bottom: 10%;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+
+    background-color: rgb(243, 208, 86);
+    border-radius: 50%;
+    border: 2px solid black;
+
+    cursor: pointer;
+
+    &:hover, &:focus{
+        background-color: rgb(200, 165, 38)
+    }
+}
