@@ -10,7 +10,7 @@ const Movies = () =>{
     const [page, setPage] = useState(1)
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
-    const firstRender = useRef(false)
+    const firstRender = useRef(true)
     
     useEffect(() => {
         const q = searchParams.get('q')    
