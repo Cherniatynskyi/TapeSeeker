@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react"
+import { useState, useEffect} from "react"
 import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
 import {useSearchParams, useLocation} from 'react-router-dom'
@@ -10,20 +10,17 @@ const Movies = () =>{
     const [page, setPage] = useState(1)
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
-    const firstRender = useRef(true)
+
     
     useEffect(() => {
         const q = searchParams.get('q')    
                 const getMoviesList = async()=>{
                     try{   
-                        if(firstRender.current === true){
-                            const fetchedMovie = await API.getMoviesList(`/movie/popular`, page)
-                            setSearchResult(prevState => prevState? [...prevState, ...fetchedMovie] : fetchedMovie)
-                            console.log("movies")
-                        }
-                        firstRender.current = true
-                        return 
-                  
+                        const fetchedMovie = await API.getMoviesList(`/movie/popular`, page)
+                        
+                        setSearchResult(prevState => prevState ? [...prevState, ...fetchedMovie] : fetchedMovie)
+                        console.log("movies")
+              
                     }
                     catch(error){Notiflix.Notify.failure('Error')}
         
@@ -39,16 +36,12 @@ const Movies = () =>{
                 }
                 if(!q){
                     getMoviesList()
+                    console.log(q)
                     return
                 }
                 getMoviesByQuery(q)
-        return()=>{
-            firstRender.current = true
-        }
 
        }, [searchParams, page])
-
-    
 
     
     const formHandler = ({ query }) => {
