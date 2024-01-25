@@ -9,13 +9,19 @@ export const getMovies = async (type) =>{
 
 }
 
+export const getMoviesList = async (type , page) =>{
+    const movieList = await axios({ url: `${BASE_URL}${type}?api_key=${API_KEY}&page=${page}`, method: "GET" })
+    return movieList.data.results;
+
+}
+
 export const getMovieDetails = async(movieId, type) => {
     const response = await axios({ url: `${BASE_URL}/movie/${movieId}${type}?api_key=${API_KEY}`, method: "GET" })
     return response.data
 }
 
-export const searchMovies = async(query) => {
-    const response = await axios({ url: `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`, method: "GET" })
+export const searchMovies = async(query, page) => {
+    const response = await axios({ url: `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`, method: "GET" })
     return response.data.results
 }
 

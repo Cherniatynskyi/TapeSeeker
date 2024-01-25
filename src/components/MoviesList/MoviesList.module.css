@@ -11,3 +11,29 @@
 .title{
     color: white;
 }
+
+.moviesListItem{
+    display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #1A1A1A;
+        border-radius: 10px;
+        border: 1px solid #262626;
+        
+        padding: 12px 12px 0 12px;
+        width: 75%;
+        transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover{
+            box-shadow: rgba(200, 200, 200, 0.05) 0px 1px 1px 0px, rgba(200, 200, 200, 0.2) 0px 0px 0px 1px;
+            transform: scale(101%);
+        }
+
+        .img{
+            width: 100%;
+            border-radius: 10px;
+            text-align: center;
+        }
+}

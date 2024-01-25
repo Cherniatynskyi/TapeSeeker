@@ -7,6 +7,7 @@ import css from './HomePage.module.css'
 
 
 const HomePage = () => {
+    const [trendAll, setTrendAll] = useState([])
 
     const [trendMov, setTrendMov] = useState([])
     const [upcMov, setUpcMov] = useState([])
@@ -23,6 +24,9 @@ const HomePage = () => {
         if(effectRun.current){
             effectRun.current = false
             try{
+                const trendingAll = await API.getMovies("/trending/all/day")
+                setTrendAll(trendingAll)
+
                 const trendingMovies = await API.getMovies("/trending/movie/day")
                 setTrendMov(trendingMovies)
 
@@ -50,7 +54,7 @@ const HomePage = () => {
    
     return(
         <>
-            <Hero movies={trendMov}/>
+            <Hero movies={trendAll}/>
             <div className={css.contentPage}>
                 <div className={css.sectionSign}>Movies</div>
                 <h2 className={css.trendingTitle}>Trending Movies now</h2>

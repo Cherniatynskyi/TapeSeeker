@@ -40,9 +40,11 @@ export const TrailerModal = ({ onClose, movieVids}) => {
         return (
             <div className={css.Overlay} onClick={handleBackdropClick}>
                 <div className={css.Modal}>
-                    <iframe className={css.frameStyle}  title={trailerUrl.name} allowFullScreen={true}
+                    {trailerUrl ? 
+                      <iframe className={css.frameStyle}  title={trailerUrl.name} allowFullScreen={true}
                         src={`https://www.youtube.com/embed/${trailerUrl.key}`}>
-                    </iframe>  
+                      </iframe> : <div style={{color: "white", fontSize:"4em", paddingTop: "80px"}}>No trailers </div>
+                    } 
                     <button className={css.modalCloseButton} onClick={handleButtonClose}><IoClose color='white' size="4em"/></button>
                 </div>
             </div>
