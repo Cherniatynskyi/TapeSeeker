@@ -20,8 +20,15 @@ export const getMovieDetails = async(movieId, type) => {
     return response.data
 }
 
-export const searchMovies = async(query, page) => {
-    const response = await axios({ url: `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`, method: "GET" })
+export const searchMovies = async(query, page, type) => {
+    const response = await axios({ url: `${BASE_URL}/search/${type}?api_key=${API_KEY}&query=${query}&page=${page}`, method: "GET" })
     return response.data.results
 }
+
+export const getTvDetails = async(tvId, type) => {
+    const response = await axios({ url: `${BASE_URL}/tv/${tvId}${type}?api_key=${API_KEY}`, method: "GET" })
+    return response.data
+}
+
+
 

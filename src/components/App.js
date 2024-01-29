@@ -1,6 +1,7 @@
 import { lazy} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom'
 import  Layout  from './Layout';
+import { TvDetails } from '../pages/TvDetails/TvDetails';
 
 const HomePage = lazy(() => import ('../pages/HomePage/HomePage'))
 const Movies = lazy(() => import ('../pages/Movies/Movies'))
@@ -12,7 +13,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<HomePage/>}/>
-          <Route path='movies' element={<Movies/>}/>
+          <Route path='movies' element={<Movies type="/movies"/>}/>
+          <Route path='tv' element={<Movies type="/tv"/>}/>
+          <Route path='tv/:tvId' element={<TvDetails/>}/>
           <Route path='movies/:movieId' element={<MovieDetails/>}>
               <Route path='reviews' element={<Reviews/>}/>
           </Route>

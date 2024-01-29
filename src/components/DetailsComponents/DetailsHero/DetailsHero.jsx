@@ -18,8 +18,7 @@ export const DetailsHero = ({movie, movieVids})=>{
       
     const OpenModal = () =>{
         setModalIsOpen(true)
-        
-        
+         
       }
   
       const closeModal = () => {
@@ -29,6 +28,9 @@ export const DetailsHero = ({movie, movieVids})=>{
 
     return(<>
                     <div>
+                        {console.log(location)}
+                        {console.log(location.state)}
+                        
                         <div className={css.heroContainer} style={{backgroundImage: `linear-gradient(0deg, #141414 10%, rgba(20, 20, 20, .7) 100%), url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")`}}>
                             <Link className={css.backButton} to={backLinkLocation.current}><IoMdArrowRoundBack /> Back to movies</Link>
                             <div className={css.posterWrap}>

@@ -8,10 +8,7 @@ import { MdLanguage } from "react-icons/md";
 
 
 
-export const MoviesSlider = ({movies}) =>{
-
-
-
+export const MoviesSlider = ({movies, type}) =>{
     const settings = {
         dots: true,
         infinite: true,
@@ -24,11 +21,12 @@ export const MoviesSlider = ({movies}) =>{
         <div>
             <Slider className={css.slider} {...settings}>
                 {movies.map(movie =>{
+                    const path = type==='tv' ? `/tv/${movie.id}` : `/movies/${movie.id}`
                     if(movie.release_date){
                         var splitted = movie.release_date.split("-")   
                     }
                     return(
-                        <Link key={movie.id} className={css.link} to={`/movies/${movie.id}`}>
+                        <Link key={movie.id} className={css.link} to={path}>
                         <div className={css.trendingItem}>
                             <div className={css.trendingItemContainer}>
                                 <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>

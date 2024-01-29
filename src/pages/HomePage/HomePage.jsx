@@ -58,20 +58,20 @@ const HomePage = () => {
             <div className={css.contentPage}>
                 <div className={css.sectionSign}>Movies</div>
                 <h2 className={css.trendingTitle}>Trending Movies now</h2>
-                <MoviesSlider  movies={trendMov} />
+                <MoviesSlider  movies={trendMov} type='movies' />
                 <h2 className={css.trendingTitle}>Upcoming</h2>
-                <MoviesSlider  movies={upcMov} />
+                <MoviesSlider  movies={upcMov} type='movies' />
                 <h2 className={css.trendingTitle}>Top Rated</h2>
-                <MoviesSlider  movies={topRatedMov} />
+                <MoviesSlider  movies={topRatedMov} type='movies' />
             </div>
             <div className={css.contentPage}>
                 <div className={css.sectionSign}>TV Series</div>
                 <h2 className={css.trendingTitle}>Trending TV series now</h2>
-                <MoviesSlider  movies={trendTv} />
+                <MoviesSlider  movies={trendTv} type='tv' />
                 <h2 className={css.trendingTitle}>Airing now</h2>
-                <MoviesSlider  movies={airingTv} />
+                <MoviesSlider  movies={airingTv} type='tv' />
                 <h2 className={css.trendingTitle}>Top Rated Series</h2>
-                <MoviesSlider  movies={topRatedTv} />
+                <MoviesSlider  movies={topRatedTv} type='tv' />
             </div>  
         </>
     )

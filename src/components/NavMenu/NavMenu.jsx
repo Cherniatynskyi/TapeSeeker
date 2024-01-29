@@ -10,7 +10,7 @@ export const NavMenu = () =>{
         <div className={css.navMenu}>
             <NavLink to='/' className={`${css.navLink} ${pathname === '/' && css.linkActive}`} >Home</NavLink>
             <NavLink to='/movies' className={`${css.navLink} ${pathname.includes('movies') && css.linkActive}`}  >Movies</NavLink>
-            <NavLink className={css.navLink} >TV series</NavLink>
+            <NavLink to='/tv' className={`${css.navLink} ${pathname.includes('tv') && css.linkActive}`} >TV series</NavLink>
             <NavLink className={css.navLink} >Support</NavLink>
         </div>
     )
