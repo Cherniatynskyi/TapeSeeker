@@ -1,10 +1,14 @@
-import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import {useState, useEffect, Suspense} from 'react'
+import { useParams, Outlet } from 'react-router-dom'
 import Notiflix from "notiflix";
 import * as API from '../../services/movies-api'
 
+import { DetailsHero } from 'components/DetailsComponents/DetailsHero/DetailsHero';
+import { DetailsInfo } from 'components/DetailsComponents/DetailsInfo/DetailsInfo';
+
 export const TvDetails = () =>{
     const [series, setSeries] = useState({})
+    const [seriesVids, setSeriesVids] = useState({})
     const {tvId} = useParams()
 
     useEffect(() => {
@@ -14,6 +18,9 @@ export const TvDetails = () =>{
                 const fetchedSeries = await API.getTvDetails(tvId)
                 setSeries(fetchedSeries)
 
+                const movieVideos = await API.getTvDetails(tvId, '/videos')
+                setSeriesVids(movieVideos)
+
             }
             catch(error){Notiflix.Notify.failure('Error')}
      }
@@ -21,6 +28,11 @@ export const TvDetails = () =>{
     }, [tvId])
 
     return (<>
-        <h1>{series.name}</h1>
+        <DetailsHero movie={series} movieVids = {seriesVids}/>
+        <DetailsInfo movie={series} movieVids = {seriesVids}/>
+
+        <Suspense fallback={<div>Loading....</div>}>
+                <Outlet/>
+        </Suspense>
     </>)
 }

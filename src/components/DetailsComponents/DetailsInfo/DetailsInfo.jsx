@@ -21,11 +21,10 @@ export const DetailsInfo = ({movie, movieVids}) =>{
                 </div>
                 <div className={`${css.mainInfoBox} ${css.castInfoBox}`}>
                     <span>Cast</span>
-                    <Cast></Cast>
+                    <Cast type={movie.title ? "mov" : "tv"} id={movie.id}></Cast>
                 </div>
                 <div className={css.mainInfoBox}>
                     <span>Videos</span>
-                    {console.log(movieVids)}
                     <div className={css.VideoSliderWrap}>
                         <VideosSlider movieVids={movieVids}></VideosSlider>
                     </div>
@@ -42,7 +41,7 @@ export const DetailsInfo = ({movie, movieVids}) =>{
             <div className={css.articleInfo}>
                 <div className={css.articleBlock}>
                     <p><FaRegCalendar /> Released year</p>
-                    <span className={css.detailsYear}>{ movie?.release_date && movie.release_date.split('-')[0]}</span>
+                    <span className={css.detailsYear}>{ movie?.release_date ? movie?.release_date?.split('-')[0] : movie?.last_air_date?.split('-')[0]}</span>
                 </div>
                 <div className={css.articleBlock}>
                     <p>Rating</p>

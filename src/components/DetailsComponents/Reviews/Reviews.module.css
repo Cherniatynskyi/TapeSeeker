@@ -93,3 +93,21 @@
     align-items: center;
     gap: 15px;
 }
+
+.closeReviewsButton{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #202020;
+    border: 1px solid #757575;
+
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    width: 62%;
+
+    &:hover{
+        background-color: #262626;
+    }
+}

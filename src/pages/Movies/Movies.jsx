@@ -23,7 +23,7 @@ const Movies = () =>{
     useEffect(() =>{
         const q = searchParams.get('q')  
         const fetchContent = async() =>{
-            if(mediaType){
+            if(type === "movie"){
                 const fetchedMovie = await API.getMoviesList(`/trending/movie/day`, page)
                 setSearchResult(fetchedMovie)
             }
@@ -95,8 +95,8 @@ const Movies = () =>{
             <div className={css.moviesHeader}>
                 <SearchBar onSubmit={formHandler}/>
                 <div className={css.mediaButtonContainer}>
-                    <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${mediaType && css.mediaButtonActive}`}>Movies</Link>
-                    <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${!mediaType && css.mediaButtonActive}`}>Shows</Link>
+                    <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "movie" && css.mediaButtonActive}`}>Movies</Link>
+                    <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "tv" && css.mediaButtonActive}`}>Shows</Link>
                 </div>
                 <ul className={css.filterMenu}>
                         <li>genre</li>

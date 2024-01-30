@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import * as API from '../../../services/movies-api'
 import { FaUser } from "react-icons/fa";
@@ -8,6 +8,7 @@ import css from './Reviews.module.css'
 
 const Reviews = () =>{
     const {movieId} = useParams()
+    const {tvId} = useParams()
     const [reviews, setReviews] = useState([])
     const effectRun = useRef(true)
 
@@ -16,20 +17,28 @@ const Reviews = () =>{
            if(effectRun.current){
             effectRun.current = false
                try{
-                   const fetchedMovie = await API.getMovieDetails(movieId, '/reviews')
-                   setReviews(fetchedMovie.results)
+                   if(movieId){
+                        const fetchedMovie = await API.getMovieDetails(movieId, '/reviews')
+                        setReviews(fetchedMovie.results)
+                   }
+                   else{
+                        const fetchedMovie = await API.getTvDetails(tvId, '/reviews')
+                        setReviews(fetchedMovie.results)
+                   }
                }
                catch(error){alert('error')}
            }
         }
         getMovie()
-       }, [movieId])
+       }, [movieId, tvId])
 
-    
+       const handleHideReviews =()=>{
+            setReviews([])
+            window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+       }
 
     return (
         <div>
-            {console.log(reviews)}
             <ul className={css.reviewsContainer}>
                 {reviews.length !== 0 ? reviews.map(review => {
                     const ratingBarStyle = {
@@ -57,6 +66,7 @@ const Reviews = () =>{
                     </li>)
                 }): <p className={css.noReviewsText}>No reviews yet <PiMaskSadFill size="1.2em" color="white"/></p>}
             </ul>
+            <Link className={css.closeReviewsButton} to={movieId ? `/movies/${movieId}` : `/tv/${tvId}`} onClick={handleHideReviews}>Close</Link>
         </div>
     )
 }   

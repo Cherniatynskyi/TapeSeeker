@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom"
-import { useState, useEffect, useRef } from "react"
+
+import { useState, useEffect } from "react"
 import * as API from '../../../services/movies-api'
 import Slider from "react-slick";
 
 import css from './Cast.module.css'
 
 
-const Cast = () =>{
+const Cast = ({type, id}) =>{
 
     const settings = {
         dots: false,
@@ -17,24 +17,26 @@ const Cast = () =>{
         arrows: true,
       };
 
-    const {movieId} = useParams()
     const [cast, setCast] = useState(null)
-    const effectRun = useRef(true)
 
     useEffect(() => {
         const getMovie = async () =>{
-           if(effectRun.current){
-               
+
                try{
-                   const fetchedMovie = await API.getMovieDetails(movieId, '/credits')
-                   setCast(fetchedMovie.cast)
+                   if(type==='mov'){
+                        const fetchedMovie = await API.getMovieDetails(id, '/credits')
+                        setCast(fetchedMovie.cast)
+                    }
+                   else{
+                        const fetchedMovie = await API.getTvDetails(id, '/credits')
+                        setCast(fetchedMovie.cast)
+                   }
                }
-               catch(error){alert('error')}
-           }
-           effectRun.current = false
+               catch(error){}
+           
         }
         getMovie()
-       }, [movieId])
+       }, [id, type])
 
     
     return (<>
