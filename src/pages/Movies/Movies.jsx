@@ -6,66 +6,50 @@ import { MoviesList } from "components/MoviesList/MoviesList"
 import css from './Movies.module.css'
 import Notiflix from 'notiflix';
 import { FaArrowUp } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
+import { IoGrid } from "react-icons/io5";
+import { Link } from "react-router-dom"
 
 const Movies = () =>{
+    const [mediaType, setMediaType] = useState(true)
+    const [listStyle, setListStyle] = useState(true)
     const [searchResult, setSearchResult] = useState(null)
     const [page, setPage] = useState(1)
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams();
     const type = location.pathname === "/movies" ? "movie" : "tv"
-    const [typeParam, setTypeParam] = useState(type)
 
-    
-    useEffect(() => {
-        setTypeParam(prev =>{
-            if(prev !== type){
-                console.log("change")
-                setPage(1)
-                setSearchResult(null)
+
+    useEffect(() =>{
+        const q = searchParams.get('q')  
+        const fetchContent = async() =>{
+            if(mediaType){
+                const fetchedMovie = await API.getMoviesList(`/trending/movie/day`, page)
+                setSearchResult(fetchedMovie)
             }
-            return type
-        })
-        const q = searchParams.get('q')    
-                const getMoviesList = async()=>{
-                    try{ 
-                        const fetchedMovie = await API.getMoviesList(typeParam === "movie" ? `/trending/movie/day` : `/trending/tv/day`, page)  
-                             
-                        setSearchResult(prevState => {
-                            const prevVal = prevState?.map(value => value.id)
-                            const currVal = fetchedMovie?.map(value => value.id)
-                            const isExist = prevVal?.find(el => currVal.includes(el))
-                    
-                            if(prevState){
-                                if(isExist && page < 3){
-                                    console.log('Cleared', page)
-                                    setPage(1)
-                                    return 
-                                }
-      
-                                if((typeParam === "movie" && prevState[0].title) || (typeParam ==="tv" && prevState[0].name)){
-                                    console.log("PAGIN", page)
-          
-                                    return [...prevState, ...fetchedMovie]
-                                }
-                            }
-                            return fetchedMovie
-                            }) 
-                    }
-                    catch(error){Notiflix.Notify.failure('Error')}
-                }
-                const getMoviesByQuery = async(q) =>{  
-                    try{
-                        const fetchedMovie = await API.searchMovies(q, page, type)
-                        setSearchResult(prevState => prevState? [...prevState, ...fetchedMovie] : fetchedMovie)
-                    }
-                    catch(error){Notiflix.Notify.failure('Error')}
-                }
-                if(!q){
-                    getMoviesList()
+            else {
+                const fetchedMovie = await API.getMoviesList(`/trending/tv/day`, page)
+                setSearchResult(fetchedMovie)
+            }
+        }
+        const getMoviesByQuery = async(q) =>{  
+            try{
+                const fetchedMovie = await API.searchMovies(q, page, type)
+                if(fetchedMovie.length === 0){
+                    Notiflix.Notify.failure('No more movies')
                     return
                 }
-                getMoviesByQuery(q)
-       }, [searchParams, page, location, typeParam, type])
+                setSearchResult(fetchedMovie)
+            }
+            catch(error){Notiflix.Notify.failure('Error')}
+        }
+        if(q){
+            getMoviesByQuery(q)
+            return
+        }
+        fetchContent()
+    })
+
 
     const onBackToTop = () =>{
         window.scrollTo({top: 0, left: 0, behavior: "smooth",});
@@ -77,17 +61,61 @@ const Movies = () =>{
         setSearchResult(null)
     }
 
-    const handlePageChange = () =>{
-        setPage(prev => prev+1)
+    const handleMediaType =(e)=>{
+        if((mediaType && e.target.textContent === "Movies") || (!mediaType && e.target.textContent === "Shows")){
+           return 
+        }
+        setSearchResult(null)
+        setPage(1)
+        setMediaType(prevState => !prevState)
+        
+    }
+
+    const handleChangePage = (e)=>{
+        onBackToTop()
+        if(e.target.id === 'dec'){
+            setPage(prev => prev - 1)  
+        }
+        else{
+            setPage(prev => prev + 1) 
+        }
+    }
+
+    const handleListChange = (e)=>{
+        if((listStyle && e.target.id === "grid") || (!listStyle && e.target.id === "list")){
+            return 
+         }
+         setListStyle(prev => !prev)
+         console.log("Change style")
+         console.log(searchResult)
     }
     
     return ( 
-        <div>
-            <SearchBar onSubmit={formHandler}/>
-            <MoviesList movies={searchResult} location={location}/> 
-            <button className={css.loadButton} onClick={handlePageChange}>load more</button>
+        <>
+            <div className={css.moviesHeader}>
+                <SearchBar onSubmit={formHandler}/>
+                <div className={css.mediaButtonContainer}>
+                    <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${mediaType && css.mediaButtonActive}`}>Movies</Link>
+                    <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${!mediaType && css.mediaButtonActive}`}>Shows</Link>
+                </div>
+                <ul className={css.filterMenu}>
+                        <li>genre</li>
+                        <li>year filter</li>
+                        <li>rating</li>
+                </ul>
+                <ul className={css.listStyle}>
+                    <button onClick={handleListChange} id="grid" className={`${css.listStyleButton} ${listStyle && css.styleButtonActive}`}><IoGrid /></button>
+                    <button onClick={handleListChange} id="list" className={`${css.listStyleButton} ${!listStyle && css.styleButtonActive}`}><FaList /></button>
+                </ul>
+            </div>
+            <MoviesList movies={searchResult} location={location} currentPage={page} listStyle={listStyle}/> 
+            <div className={css.pagination}>
+                <button className={css.paginationButton} disabled={page === 1} onClick={(e)=>handleChangePage(e)} id="dec">Back</button>
+                <span className={css.paginationPage}>{page}</span>
+                <button className={css.paginationButton} onClick={(e)=>handleChangePage(e)} id="inc">Next</button>
+            </div>
             <button onClick={onBackToTop} className={css.backToTopButton}><FaArrowUp size="2em"/></button>
-        </div>)
+            </>)
 }   
 
 export default Movies

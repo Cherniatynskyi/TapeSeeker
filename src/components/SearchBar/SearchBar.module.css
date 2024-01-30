@@ -1,32 +1,34 @@
 .form{
-    height: 40px;
-    width: 100%;
+    height: 50px;
+    width: 50%;
     display: flex;
-    margin: 40px;
 
 }
 
 .formButton{
     display: inline-block;
-    color: white;
-    background-color: black;
+    color:black;
+    background-color: rgb(243, 209, 87);
     border: none;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    padding: 12px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 12px 14px;
     font-size: 14px;
 
     cursor: pointer;
 
     &:hover{
-        background-color: rgb(21, 21, 21);
+        background-color: rgb(214, 173, 23);
     }
 }
 
 .input{
     border: none;
-    width: 200px;
+    width: 100%;
+    font-size: 18px;
     padding-left: 10px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background-color: rgb(31, 31, 31);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: white;
 }

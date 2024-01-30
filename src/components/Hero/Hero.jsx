@@ -30,7 +30,7 @@ export const Hero = ({movies})=>{
                             <h2 className={css.heroTitle}>{movie.title ? movie.title : movie.name}</h2>
                             <p className={css.heroDesc}>{movie.overview}</p>
                             <div className={css.heroNav}>
-                                < Link className={css.heroButton} to={`/movies/${movie.id}`}><FaCirclePlay size="1.2em"/> Click to view</Link>
+                                < Link className={css.heroButton} to={movie.title ? `/movies/${movie.id}` : `/tv/${movie.id}`}><FaCirclePlay size="1.2em"/> Click to view</Link>
                                 <div className={css.heroOptions}>
                                     <button className={css.heroOptionItem}><FaRegHeart className={css.heroIcon} size="1.3em" /></button>
                                     <button className={css.heroOptionItem}><FaRegClock className={css.heroIcon}  size="1.3em" /></button>

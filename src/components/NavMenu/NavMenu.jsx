@@ -9,8 +9,8 @@ export const NavMenu = () =>{
     return(
         <div className={css.navMenu}>
             <NavLink to='/' className={`${css.navLink} ${pathname === '/' && css.linkActive}`} >Home</NavLink>
-            <NavLink to='/movies' className={`${css.navLink} ${pathname.includes('movies') && css.linkActive}`}  >Movies</NavLink>
-            <NavLink to='/tv' className={`${css.navLink} ${pathname.includes('tv') && css.linkActive}`} >TV series</NavLink>
+            {pathname !== '/tv' ? <NavLink to={'/movies'} className={`${css.navLink} ${(pathname.includes('movies')|| pathname.includes('tv')) && css.linkActive}`}  >Movies & Tv</NavLink> :
+             <div className={`${css.navLink} ${(pathname.includes('movies')|| pathname.includes('tv')) && css.linkActive}`}>Movies & Tv</div>}
             <NavLink className={css.navLink} >Support</NavLink>
         </div>
     )

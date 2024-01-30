@@ -1,6 +1,7 @@
 import { useState } from "react";
 import css from './SearchBar.module.css'
 import Notiflix from 'notiflix';
+import { IoSearch } from "react-icons/io5";
 
 export const SearchBar = ({onSubmit}) => {
     const [query, setQuery] = useState('')
@@ -15,27 +16,24 @@ export const SearchBar = ({onSubmit}) => {
         if (!query) {
         Notiflix.Notify.failure('Enter your search term')
         return
-    }
+        }
         onSubmit({query})
+        setQuery('')
     }
 
   
         return (
-            <header >
-                <form className={css.form} onSubmit={handleSubmit}>
+                <form className={css.form} onSubmit={handleSubmit} >
                     <button className={css.formButton} type="submit">
-                    <span>Search</span>
+                    <IoSearch size="1.3em"/>
                     </button>
                     <input
                         className={css.input}
                         type="text"
-                        autoComplete="off"
-                        autoFocus
                         placeholder="Search movies"
                         onChange={handleChange}
                         value={query}
                     />
                 </form>
-            </header>
         )
 }

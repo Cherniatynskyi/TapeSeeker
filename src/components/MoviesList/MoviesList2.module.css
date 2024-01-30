@@ -1,0 +1,23 @@
+.moviesList{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 20px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.moviesListItem{
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid #757575;
+    display: flex;
+    border-radius: 8px;
+}
+
+.img{
+    width: 150px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}

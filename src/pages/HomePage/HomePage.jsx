@@ -19,7 +19,7 @@ const HomePage = () => {
     const effectRun = useRef(true)
 
     useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
      const getMoviesFunc = async () =>{
         if(effectRun.current){
             effectRun.current = false

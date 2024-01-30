@@ -21,6 +21,7 @@
     line-height: 150%;
     border-radius: 8px;
     transition: 200ms linear;
+    cursor: pointer;
 
     &:hover{
         background-color: #1f1f1f;
