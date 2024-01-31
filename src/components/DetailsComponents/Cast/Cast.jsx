@@ -23,11 +23,16 @@ const Cast = ({type, id}) =>{
         const getMovie = async () =>{
 
                try{
+                if(!id){
+                    return
+                }
                    if(type==='mov'){
+                    
                         const fetchedMovie = await API.getMovieDetails(id, '/credits')
                         setCast(fetchedMovie.cast)
                     }
                    else{
+                    
                         const fetchedMovie = await API.getTvDetails(id, '/credits')
                         setCast(fetchedMovie.cast)
                    }
@@ -46,10 +51,10 @@ const Cast = ({type, id}) =>{
                     {cast.map(actor => { 
                             return (
                             <li className={css.actorContainer} key={actor.id}>
-                                <div>
+                                <div className={css.actorWrap}>
                                     <img className={css.img}  src={actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : 'https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png'} alt={actor.name}/>
                                     <p className={css.name} >{ actor.name.length > 14 ? actor.name.split(' ')[1] : actor.name}</p>
-                                    <p className={css.role} >{ actor.character.length > 14 ? actor.character.split(' ')[0] : actor.character}</p>
+                                    <p className={css.role} >{ actor.character.length > 14 ? actor.character.split(' ')[1] : actor.character}</p>
                                 </div>
                             </li>)    
                     })}

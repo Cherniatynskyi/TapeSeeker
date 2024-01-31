@@ -17,11 +17,13 @@ export const MoviesSlider = ({movies, type}) =>{
         slidesToScroll: 5,
         arrows: true,
       };
+
     return(
         <div>
             <Slider className={css.slider} {...settings}>
                 {movies.map(movie =>{
                     const path = type==='tv' ? `/tv/${movie.id}` : `/movies/${movie.id}`
+                    const title = movie.title ?? movie.name
                     if(movie.release_date){
                         var splitted = movie.release_date.split("-")   
                     }
@@ -30,7 +32,7 @@ export const MoviesSlider = ({movies, type}) =>{
                         <div className={css.trendingItem}>
                             <div className={css.trendingItemContainer}>
                                 <img className={css.img} src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: 'https://eticketsolutions.com/demo/themes/e-ticket/img/movie.jpg'} alt={movie.title}/>
-                                <p className={css.movieTitle}>{movie.title ? movie.title : movie.name}</p>
+                                <p className={css.movieTitle}>{ title.length > 20 ? `${title.substring(0, 19)}...`: title}</p>
                                 <div className={css.thumbsContainer}>
                                     <span className={css.thumb}> <CiCalendarDate size="1.2em" /> {splitted ? splitted[0] : '2023'}</span>
                                     <span className={css.thumb}> <MdStar size="1.2em" />{movie.vote_average.toFixed(1)}</span>

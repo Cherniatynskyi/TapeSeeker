@@ -28,15 +28,17 @@
         line-height: 150%;
     }
 
-    p{
+    
+    
+}
+
+.mainBoxInfoText{
         color: white;
         font-family: Manrope;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: 150%;
-    }
-    
 }
 
 .castInfoBox{

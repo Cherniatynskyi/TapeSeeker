@@ -13,7 +13,7 @@ export const TvDetails = () =>{
 
     useEffect(() => {
         window.scrollTo({top: 0, left: 0});
-     const getMovie = async () =>{
+        const getMovie = async () =>{
             try{
                 const fetchedSeries = await API.getTvDetails(tvId)
                 setSeries(fetchedSeries)

@@ -3,6 +3,7 @@ import css from './DetailsInfo.module.css'
 import { Link } from 'react-router-dom';
 import { FaRegCalendar } from "react-icons/fa6";
 import VideosSlider from './VideosSlider';
+import { Seasons } from './Seasons/Seasons';
 
 
 export const DetailsInfo = ({movie, movieVids}) =>{
@@ -17,8 +18,12 @@ export const DetailsInfo = ({movie, movieVids}) =>{
             <div className={css.mainInfo}>
                 <div className={css.mainInfoBox}>
                     <span>Description</span>
-                    <p>{movie.overview}</p>
+                    <p className={css.mainBoxInfoText}>{movie.overview}</p>
                 </div>
+                {movie.name &&
+                 <div className={css.mainInfoBox}>
+                    <Seasons tv={movie}/>
+                </div>}
                 <div className={`${css.mainInfoBox} ${css.castInfoBox}`}>
                     <span>Cast</span>
                     <Cast type={movie.title ? "mov" : "tv"} id={movie.id}></Cast>

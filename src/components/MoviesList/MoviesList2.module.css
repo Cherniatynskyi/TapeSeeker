@@ -3,6 +3,8 @@
     flex-direction: column;
     list-style: none;
     gap: 20px;
+    border-radius: 12px;
+    border: 1px solid #262626;
 
     margin: 0;
     padding: 20px 40px;
