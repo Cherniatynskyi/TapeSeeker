@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter basename='/goit-react-hw-05-movies'>
+    <BrowserRouter basename='/TapeSeeker'>
       <App />
     </BrowserRouter>
   // </React.StrictMode>

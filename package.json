@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-05-movies",
+  "name": "tapeseeker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Cherniatynskyi.github.io/goit-react-hw-05-movies/",
+  "homepage": "https://Cherniatynskyi.github.io/TapeSeeker/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
