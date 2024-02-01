@@ -1,36 +1,37 @@
 {
   "files": {
     "main.css": "/TapeSeeker/static/css/main.c6f0d04c.css",
-    "main.js": "/TapeSeeker/static/js/main.324f0460.js",
+    "main.js": "/TapeSeeker/static/js/main.9e24f25d.js",
     "static/css/812.294ece36.chunk.css": "/TapeSeeker/static/css/812.294ece36.chunk.css",
     "static/js/812.da62f67d.chunk.js": "/TapeSeeker/static/js/812.da62f67d.chunk.js",
     "static/css/565.2bd1e1e2.chunk.css": "/TapeSeeker/static/css/565.2bd1e1e2.chunk.css",
-    "static/js/565.b0e184c5.chunk.js": "/TapeSeeker/static/js/565.b0e184c5.chunk.js",
-    "static/js/961.dc881583.chunk.js": "/TapeSeeker/static/js/961.dc881583.chunk.js",
+    "static/js/565.d2679665.chunk.js": "/TapeSeeker/static/js/565.d2679665.chunk.js",
+    "static/js/961.3ee7095e.chunk.js": "/TapeSeeker/static/js/961.3ee7095e.chunk.js",
     "static/css/399.4c0ad662.chunk.css": "/TapeSeeker/static/css/399.4c0ad662.chunk.css",
     "static/js/399.def53ef0.chunk.js": "/TapeSeeker/static/js/399.def53ef0.chunk.js",
-    "static/css/936.31d6cfe0.chunk.css": "/TapeSeeker/static/css/936.31d6cfe0.chunk.css",
-    "static/js/936.482c21f5.chunk.js": "/TapeSeeker/static/js/936.482c21f5.chunk.js",
+    "static/css/936.2745b890.chunk.css": "/TapeSeeker/static/css/936.2745b890.chunk.css",
+    "static/js/936.5dce64aa.chunk.js": "/TapeSeeker/static/js/936.5dce64aa.chunk.js",
     "static/js/67.15041db7.chunk.js": "/TapeSeeker/static/js/67.15041db7.chunk.js",
     "static/js/765.1a0e8c48.chunk.js": "/TapeSeeker/static/js/765.1a0e8c48.chunk.js",
     "static/media/poster.jpeg": "/TapeSeeker/static/media/poster.54311eb113b845a617bd.jpeg",
     "static/media/logo.png": "/TapeSeeker/static/media/logo.dd0e25eb51ebc53c127f.png",
     "index.html": "/TapeSeeker/index.html",
     "main.c6f0d04c.css.map": "/TapeSeeker/static/css/main.c6f0d04c.css.map",
-    "main.324f0460.js.map": "/TapeSeeker/static/js/main.324f0460.js.map",
+    "main.9e24f25d.js.map": "/TapeSeeker/static/js/main.9e24f25d.js.map",
     "812.294ece36.chunk.css.map": "/TapeSeeker/static/css/812.294ece36.chunk.css.map",
     "812.da62f67d.chunk.js.map": "/TapeSeeker/static/js/812.da62f67d.chunk.js.map",
     "565.2bd1e1e2.chunk.css.map": "/TapeSeeker/static/css/565.2bd1e1e2.chunk.css.map",
-    "565.b0e184c5.chunk.js.map": "/TapeSeeker/static/js/565.b0e184c5.chunk.js.map",
-    "961.dc881583.chunk.js.map": "/TapeSeeker/static/js/961.dc881583.chunk.js.map",
+    "565.d2679665.chunk.js.map": "/TapeSeeker/static/js/565.d2679665.chunk.js.map",
+    "961.3ee7095e.chunk.js.map": "/TapeSeeker/static/js/961.3ee7095e.chunk.js.map",
     "399.4c0ad662.chunk.css.map": "/TapeSeeker/static/css/399.4c0ad662.chunk.css.map",
     "399.def53ef0.chunk.js.map": "/TapeSeeker/static/js/399.def53ef0.chunk.js.map",
-    "936.482c21f5.chunk.js.map": "/TapeSeeker/static/js/936.482c21f5.chunk.js.map",
+    "936.2745b890.chunk.css.map": "/TapeSeeker/static/css/936.2745b890.chunk.css.map",
+    "936.5dce64aa.chunk.js.map": "/TapeSeeker/static/js/936.5dce64aa.chunk.js.map",
     "67.15041db7.chunk.js.map": "/TapeSeeker/static/js/67.15041db7.chunk.js.map",
     "765.1a0e8c48.chunk.js.map": "/TapeSeeker/static/js/765.1a0e8c48.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c6f0d04c.css",
-    "static/js/main.324f0460.js"
+    "static/js/main.9e24f25d.js"
   ]
 }
