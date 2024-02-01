@@ -4,10 +4,9 @@ import { IoClose } from "react-icons/io5";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 
-export const TrailerModal = ({ onClose, movieVids}) => {
+export const TrailerModal = ({ onClose, modalVid}) => {
 
     const firstRender = useRef(false)
-    const trailerUrl = movieVids?.results?.find(element => element.name.includes("Official Trailer") || element.name.includes("Trailer"))
     useLockBodyScroll();
 
     useEffect(() => {
@@ -40,10 +39,10 @@ export const TrailerModal = ({ onClose, movieVids}) => {
         return (
             <div className={css.Overlay} onClick={handleBackdropClick}>
                 <div className={css.Modal}>
-                    {trailerUrl ? 
-                      <iframe className={css.frameStyle}  title={trailerUrl.name} allowFullScreen={true}
-                        src={`https://www.youtube.com/embed/${trailerUrl.key}`}>
-                      </iframe> : <div style={{color: "white", fontSize:"4em", paddingTop: "80px"}}>No trailers </div>
+                    {modalVid ? 
+                      <iframe className={css.frameStyle}  title={modalVid.name} allowFullScreen={true}
+                        src={`https://www.youtube.com/embed/${modalVid.key}`}>
+                      </iframe> : <div style={{color: "white", fontSize:"4em", paddingTop: "80px"}}>No videos</div>
                     } 
                     <button className={css.modalCloseButton} onClick={handleButtonClose}><IoClose color='white' size="4em"/></button>
                 </div>

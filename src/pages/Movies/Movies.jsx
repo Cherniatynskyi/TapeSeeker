@@ -48,7 +48,7 @@ const Movies = () =>{
             return
         }
         fetchContent()
-    })
+    }, [page, searchParams, type])
 
 
     const onBackToTop = () =>{
@@ -82,7 +82,7 @@ const Movies = () =>{
     }
 
     const handleListChange = (e)=>{
-        if((listStyle && e.target.id === "grid") || (!listStyle && e.target.id === "list")){
+        if((listStyle && e.currentTarget.id === "grid") || (!listStyle && e.currentTarget.id === "list")){
             return 
          }
          setListStyle(prev => !prev)

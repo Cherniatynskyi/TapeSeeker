@@ -15,6 +15,7 @@ export const DetailsHero = ({movie, movieVids})=>{
     const location = useLocation()
     const backLinkLocation = useRef(location.state?.from ?? '/')
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const trailerUrl = movieVids?.results?.find(element => element.name.includes("Official Trailer") || element.name.includes("Trailer"))
       
     const OpenModal = () =>{
         setModalIsOpen(true)
@@ -38,7 +39,7 @@ export const DetailsHero = ({movie, movieVids})=>{
                                 <p className={css.heroDesc}>{movie.overview}</p>
                                 <div className={css.heroNav}>
                                     < button onClick={OpenModal} className={css.heroButton}><FaCirclePlay size="1.2em"/>View Trailer</button>
-                                    {modalIsOpen && <TrailerModal onClose={closeModal} movieVids={movieVids}></TrailerModal>}
+                                    {modalIsOpen && <TrailerModal onClose={closeModal} modalVid={trailerUrl}></TrailerModal>}
                                     <div className={css.heroOptions}>
                                         <button className={css.heroOptionItem}><FaRegHeart className={css.heroIcon} size="1.3em" /></button>
                                         <button className={css.heroOptionItem}><FaRegClock className={css.heroIcon}  size="1.3em" /></button>
