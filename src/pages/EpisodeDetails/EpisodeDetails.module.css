@@ -13,3 +13,90 @@
 
     margin-top: 30px;
 }
+
+
+.episodeContent{
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.crewTitle{
+    color: white;
+}
+
+.crewList{
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+
+    padding: 40px;
+    list-style: none;
+
+    width: 60%;
+    gap: 20px;
+
+    margin: 0;
+}
+
+
+.crewJob{
+    color: #999;
+    font-size: 16px;
+    font-weight: 500;
+
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.itemContent{
+    display: flex;
+    align-items: center;
+    background-color: #141414;
+    border: 1px solid #262626;
+    border-radius: 10px;
+
+    gap: 20px;
+}
+
+.crewImg{
+    width: 60px;
+    border-radius: 10px;
+}
+
+.crewName{
+    color: white;
+}
+
+.layoutImgWrap{
+    width: 80px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crewArticle{
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+
+    width: 32%;
+
+    padding: 20px;
+}
+
+.articleTitle{
+    color: white;
+    font-size: 20px;
+}
+
+.articleText{
+    color: white;
+    font-size: 18px;
+}

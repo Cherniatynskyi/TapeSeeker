@@ -1,6 +1,7 @@
 
 import Slider from "react-slick";
 import css from './DetailsInfo.module.css'
+import { IoVideocamOff } from "react-icons/io5";
 
 
  const VideosSlider = ({movieVids}) =>{
@@ -16,9 +17,10 @@ import css from './DetailsInfo.module.css'
 
     
     return (<>
-            {movieVids &&
+            {movieVids?.results?.length !== 0 ?
             <div>
                 <Slider className={css.slider} {...settings}>
+                    {console.log(movieVids)}
                     {movieVids?.results?.map(vid =>{
                             return (
                                 <iframe className={css.frameStyle} key={vid.key} title={vid.name} allowFullScreen={true}
@@ -27,7 +29,7 @@ import css from './DetailsInfo.module.css'
                             )
                         })}
                     </Slider>
-            </div>}
+            </div> : <h3 className={css.noVideos}>No videos <IoVideocamOff /></h3>}
             </>)
 }   
 

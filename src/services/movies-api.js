@@ -30,5 +30,10 @@ export const getTvDetails = async(tvId, type) => {
     return response.data
 }
 
+export const getMoviesByGenre = async(type, genreId, page)=>{
+    const response = await axios({ url: `${BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`, method: "GET" })
+    return response.data
+}
+
 
 

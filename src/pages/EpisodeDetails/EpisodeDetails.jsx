@@ -6,6 +6,7 @@ import * as API from '../../services/movies-api'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
+import { IoPersonSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { AiOutlineLike } from "react-icons/ai";
 import { TrailerModal } from 'components/DetailsComponents/TrailerModal/TrailerModal';
@@ -65,17 +66,27 @@ const EpisodeDetails = () =>{
                     </div>
                     {modalIsOpen && <TrailerModal onClose={closeModal} modalVid={videos.results[videos.results.length -1 ]}/>}
             </div>
-            <div>
-                <h2>Crew</h2>
-                <ul>
+            <h2 className={css2.crewTitle}>Crew</h2>
+            <div className={css2.episodeContent}>
+                <ul className={css2.crewList}>
                     {episode?.crew?.map(crew => {
                         return (
-                            <li key={crew.id}>
-                                <p>{crew.job}</p>
+                            <li className={css2.crewItemWrap} key={crew.id}>
+                                <h3 className={css2.crewJob}>{crew.job}</h3>
+                                <div className={css2.itemContent}>
+                                    {crew.profile_path ? <img className={css2.crewImg} src={`https://image.tmdb.org/t/p/original${crew.profile_path}`} alt="" /> : <div className={css2.layoutImgWrap}><IoPersonSharp size="2em" color='#262626'/></div>}
+                                    <p className={css2.crewName}>{crew.name}</p>
+                                </div>
                             </li>
                         )
                     })}
                 </ul>
+                <div className={css2.crewArticle}>
+                        <h3 className={css2.articleTitle}>{episode.name}</h3>
+                        <p className={css2.articleText}>Season: {episode.season_number}</p>
+                        <p className={css2.articleText}>Episode: {episode.episode_number}</p>
+                        <p className={css2.articleText}>Score: {episode.vote_average?.toFixed(1)}</p>
+                </div>
             </div>
         </>
     )

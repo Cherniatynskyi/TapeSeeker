@@ -1,45 +1,84 @@
 import { useState, useEffect} from "react"
 import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
-import {useSearchParams, useLocation } from 'react-router-dom'
+import {useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { MoviesList } from "components/MoviesList/MoviesList"
 import css from './Movies.module.css'
 import Notiflix from 'notiflix';
+import Select from 'react-select';
 import { FaArrowUp } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
 import { Link } from "react-router-dom"
+import { ColorRing } from "react-loader-spinner"
 
 const Movies = () =>{
     const [mediaType, setMediaType] = useState(true)
     const [listStyle, setListStyle] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [searchResult, setSearchResult] = useState(null)
+    const [selectedGenre, setSelectedGenre] = useState(null)
     const [page, setPage] = useState(1)
+    
+
     const location = useLocation()
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const type = location.pathname === "/movies" ? "movie" : "tv"
 
+    const genreOptions = [
+        { value: 'all', label: 'All' },
+        { value: '28', label: 'Action' },
+        { value: '35', label: 'Comedy' },
+        { value: '80', label: 'Crime' },
+        { value: '99', label: 'Documentary' },
+        { value: '18', label: 'Drama' },
+        { value: '10751', label: 'Family' },
+        { value: '14', label: 'Fantasy' },
+        { value: '36', label: 'Histroy' },
+        { value: '27', label: 'Horror' },
+        { value: '10402', label: 'Music' },
+        { value: '878', label: 'Sci-fi' },
+        { value: '53', label: 'Thriler' },
+        { value: '10752', label: 'War' },
+      ];
+
 
     useEffect(() =>{
+        
         const q = searchParams.get('q')  
         const fetchContent = async() =>{
+            setIsLoading(true)
             if(type === "movie"){
-                const fetchedMovie = await API.getMoviesList(`/trending/movie/day`, page)
-                setSearchResult(fetchedMovie)
+                if(!selectedGenre || selectedGenre.label === 'All'){
+                    const fetchedMovie = await API.getMoviesList(`/discover/movie`, page)
+                    setSearchResult(fetchedMovie)
+                    console.log(fetchedMovie)  
+                } 
+                else{
+                    const fetchedMovie = await API.getMoviesByGenre('movie', selectedGenre.value, page)
+                    setSearchResult(fetchedMovie.results)
+                    console.log(fetchedMovie.results) 
+                }
+                console.log(selectedGenre) 
             }
             else {
                 const fetchedMovie = await API.getMoviesList(`/trending/tv/day`, page)
                 setSearchResult(fetchedMovie)
             }
+            setIsLoading(false)
         }
         const getMoviesByQuery = async(q) =>{  
             try{
+                setIsLoading(true)
                 const fetchedMovie = await API.searchMovies(q, page, type)
                 if(fetchedMovie.length === 0){
-                    Notiflix.Notify.failure('No more movies')
+                    Notiflix.Notify.failure(`Could't find "${q}"`)
+                    navigate('/movies')
                     return
                 }
                 setSearchResult(fetchedMovie)
+                setIsLoading(false)
             }
             catch(error){Notiflix.Notify.failure('Error')}
         }
@@ -48,7 +87,8 @@ const Movies = () =>{
             return
         }
         fetchContent()
-    }, [page, searchParams, type])
+        
+    }, [page, searchParams, type, navigate, selectedGenre])
 
 
     const onBackToTop = () =>{
@@ -59,6 +99,7 @@ const Movies = () =>{
         setPage(1)
         setSearchParams({q: query})
         setSearchResult(null)
+        setSelectedGenre(null)
     }
 
     const handleMediaType =(e)=>{
@@ -89,17 +130,30 @@ const Movies = () =>{
          console.log("Change style")
          console.log(searchResult)
     }
+
+    const handleChangeGenre = (e) =>{
+        console.log(e)
+        setSelectedGenre(e)
+        setPage(1)
+    }
     
     return ( 
         <>
+            {isLoading && <div className={css.loadingOverlay}><div className={css.loadingText}><ColorRing colors={['#F3D056', '#F3D056', '#F3D056', '#F3D056', '#F3D056']}/></div></div>}
             <div className={css.moviesHeader}>
                 <SearchBar onSubmit={formHandler}/>
+
                 <div className={css.mediaButtonContainer}>
                     <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "movie" && css.mediaButtonActive}`}>Movies</Link>
                     <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "tv" && css.mediaButtonActive}`}>Shows</Link>
                 </div>
                 <ul className={css.filterMenu}>
-                        <li>genre</li>
+                    <Select
+                        placeholder = "All"
+                        value = {selectedGenre}
+                        onChange={(e)=>handleChangeGenre(e)}
+                        options={genreOptions}
+                    />
                         <li>year filter</li>
                         <li>rating</li>
                 </ul>
@@ -109,11 +163,11 @@ const Movies = () =>{
                 </ul>
             </div>
             <MoviesList movies={searchResult} location={location} currentPage={page} listStyle={listStyle}/> 
-            <div className={css.pagination}>
+            {!isLoading && <div className={css.pagination}>
                 <button className={css.paginationButton} disabled={page === 1} onClick={(e)=>handleChangePage(e)} id="dec">Back</button>
                 <span className={css.paginationPage}>{page}</span>
                 <button className={css.paginationButton} onClick={(e)=>handleChangePage(e)} id="inc">Next</button>
-            </div>
+            </div>}
             <button onClick={onBackToTop} className={css.backToTopButton}><FaArrowUp size="2em"/></button>
             </>)
 }   

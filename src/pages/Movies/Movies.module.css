@@ -166,3 +166,21 @@
     font-size: 26px;
 }
 
+.loadingOverlay{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    width: 100%;
+    max-width: 1482px;
+    height: 100%;
+    margin-right: -50px;
+    background-color: rgb(20, 20, 20);
+    overflow-x: hidden;
+}
+
+.loadingText{
+    padding-bottom: 20%;
+}
