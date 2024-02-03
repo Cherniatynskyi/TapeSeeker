@@ -153,7 +153,7 @@ const Movies = () =>{
                 <SearchBar onSubmit={formHandler}/>
 
                
-                {searchParams.size === 0 && 
+                
                 <ul  className={css.filterMenu}>
                 <li className={css.filterMenuItem}>
                     <span>Genre: </span>
@@ -204,7 +204,7 @@ const Movies = () =>{
                     />
                 </li>
             </ul>
-                }
+                
                 <ul className={css.listStyle}>
                     <button onClick={handleListChange} id="grid" className={`${css.listStyleButton} ${listStyle && css.styleButtonActive}`}><IoGrid /></button>
                     <button onClick={handleListChange} id="list" className={`${css.listStyleButton} ${!listStyle && css.styleButtonActive}`}><FaList /></button>
