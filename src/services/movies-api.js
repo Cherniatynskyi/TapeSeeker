@@ -9,8 +9,8 @@ export const getMovies = async (type) =>{
 
 }
 
-export const getMoviesList = async (type , page) =>{
-    const movieList = await axios({ url: `${BASE_URL}${type}?api_key=${API_KEY}&page=${page}`, method: "GET" })
+export const getMoviesList = async (type , page, filter) =>{
+    const movieList = await axios({ url: `${BASE_URL}${type}?api_key=${API_KEY}&sort_by=${filter}&page=${page}`, method: "GET" })
     return movieList.data.results;
 
 }
@@ -30,10 +30,9 @@ export const getTvDetails = async(tvId, type) => {
     return response.data
 }
 
-export const getMoviesByGenre = async(type, genreId, page)=>{
-    const response = await axios({ url: `${BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`, method: "GET" })
+export const getMoviesByGenre = async(type, genreId, filter, page)=>{
+    const response = await axios({ url: `${BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genreId}&sort_by=${filter}&page=${page}`, method: "GET" })
     return response.data
 }
-
 
 

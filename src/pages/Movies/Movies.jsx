@@ -3,9 +3,11 @@ import * as API from '../../services/movies-api'
 import { SearchBar } from "../../components/SearchBar/SearchBar"
 import {useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { MoviesList } from "components/MoviesList/MoviesList"
+import Select from 'react-select';
+import { genreOptions, filterOptions } from "utils/selectOptions"
 import css from './Movies.module.css'
 import Notiflix from 'notiflix';
-import Select from 'react-select';
+
 import { FaArrowUp } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
@@ -17,7 +19,8 @@ const Movies = () =>{
     const [listStyle, setListStyle] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [searchResult, setSearchResult] = useState(null)
-    const [selectedGenre, setSelectedGenre] = useState(null)
+    const [selectedGenre, setSelectedGenre] = useState(genreOptions[0])
+    const [selectFilter, setSelectFilter] = useState(filterOptions[0])
     const [page, setPage] = useState(1)
     
 
@@ -26,45 +29,41 @@ const Movies = () =>{
     const [searchParams, setSearchParams] = useSearchParams();
     const type = location.pathname === "/movies" ? "movie" : "tv"
 
-    const genreOptions = [
-        { value: 'all', label: 'All' },
-        { value: '28', label: 'Action' },
-        { value: '35', label: 'Comedy' },
-        { value: '80', label: 'Crime' },
-        { value: '99', label: 'Documentary' },
-        { value: '18', label: 'Drama' },
-        { value: '10751', label: 'Family' },
-        { value: '14', label: 'Fantasy' },
-        { value: '36', label: 'Histroy' },
-        { value: '27', label: 'Horror' },
-        { value: '10402', label: 'Music' },
-        { value: '878', label: 'Sci-fi' },
-        { value: '53', label: 'Thriler' },
-        { value: '10752', label: 'War' },
-      ];
+
+
+    
 
 
     useEffect(() =>{
         
-        const q = searchParams.get('q')  
+        var q = searchParams.get('q')  
         const fetchContent = async() =>{
             setIsLoading(true)
             if(type === "movie"){
-                if(!selectedGenre || selectedGenre.label === 'All'){
-                    const fetchedMovie = await API.getMoviesList(`/discover/movie`, page)
+                if(!selectedGenre || selectedGenre?.label === 'All'){
+                    const fetchedMovie = await API.getMoviesList(`/discover/movie`, page, selectFilter.value)
                     setSearchResult(fetchedMovie)
-                    console.log(fetchedMovie)  
                 } 
                 else{
-                    const fetchedMovie = await API.getMoviesByGenre('movie', selectedGenre.value, page)
+                    const fetchedMovie = await API.getMoviesByGenre('movie', selectedGenre?.value, selectFilter.value, page)
                     setSearchResult(fetchedMovie.results)
-                    console.log(fetchedMovie.results) 
                 }
-                console.log(selectedGenre) 
             }
             else {
-                const fetchedMovie = await API.getMoviesList(`/trending/tv/day`, page)
-                setSearchResult(fetchedMovie)
+                if(!selectedGenre || selectedGenre?.label === 'All'){
+                    const fetchedMovie = await API.getMoviesList(`/discover/tv`, page, selectFilter.value)
+                    
+                    setSearchResult(fetchedMovie)
+                }
+                else{
+                    const fetchedMovie = await API.getMoviesByGenre('tv', selectedGenre?.value,selectFilter.value, page)
+                    if(fetchedMovie.results.length === 0){
+                        Notiflix.Notify.failure(`Could't find shows with this genre`)
+                        navigate('/movies')
+                        return
+                    }
+                    setSearchResult(fetchedMovie.results)
+                }
             }
             setIsLoading(false)
         }
@@ -88,7 +87,7 @@ const Movies = () =>{
         }
         fetchContent()
         
-    }, [page, searchParams, type, navigate, selectedGenre])
+    }, [page, searchParams, type, navigate, selectedGenre, selectFilter])
 
 
     const onBackToTop = () =>{
@@ -136,27 +135,76 @@ const Movies = () =>{
         setSelectedGenre(e)
         setPage(1)
     }
+
+    const handleChangeFilter = (e) =>{
+        console.log(e)
+        setSelectFilter(e)
+        setPage(1)
+    }
     
     return ( 
         <>
+             <div className={css.mediaButtonContainer}>
+                    <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "movie" && css.mediaButtonActive}`}>Movies</Link>
+                    <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "tv" && css.mediaButtonActive}`}>Shows</Link>
+                </div>
             {isLoading && <div className={css.loadingOverlay}><div className={css.loadingText}><ColorRing colors={['#F3D056', '#F3D056', '#F3D056', '#F3D056', '#F3D056']}/></div></div>}
             <div className={css.moviesHeader}>
                 <SearchBar onSubmit={formHandler}/>
 
-                <div className={css.mediaButtonContainer}>
-                    <Link to="/movies" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "movie" && css.mediaButtonActive}`}>Movies</Link>
-                    <Link to="/tv" onClick={(e)=>handleMediaType(e)} className={`${css.mediaButton} ${type === "tv" && css.mediaButtonActive}`}>Shows</Link>
-                </div>
-                <ul className={css.filterMenu}>
+               
+                {searchParams.size === 0 && 
+                <ul  className={css.filterMenu}>
+                <li className={css.filterMenuItem}>
+                    <span>Genre: </span>
                     <Select
                         placeholder = "All"
                         value = {selectedGenre}
                         onChange={(e)=>handleChangeGenre(e)}
                         options={genreOptions}
+                        theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 8,
+                            colors: {
+                            neutral0: 'rgb(33, 33, 33)',
+                            neutral20: '#757575',
+                            primary25: '#505050',
+                            primary: 'rgb(243, 218, 92)',
+                            },
+                        })}
+                        classNames={{
+                            control: () => css.control,
+                            option: ()=> css.optionsSyles,
+                        }}
+                        
                     />
-                        <li>year filter</li>
-                        <li>rating</li>
-                </ul>
+                </li>
+                <li className={css.filterMenuItem}>
+                    <span>Sort by:</span>
+                    <Select
+                        placeholder = {selectFilter}
+                        value = {selectFilter}
+                        onChange={(e)=>handleChangeFilter(e)}
+                        options={filterOptions}
+                        theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 8,
+                            colors: {
+                            neutral0: 'rgb(33, 33, 33)',
+                            neutral20: '#757575',
+                            primary25: '#505050',
+                            primary: 'rgb(243, 218, 92)',
+                            },
+                        })}
+                        classNames={{
+                            control: () => css.control,
+                            option: ()=> css.optionsSyles,
+                        }}
+                        
+                    />
+                </li>
+            </ul>
+                }
                 <ul className={css.listStyle}>
                     <button onClick={handleListChange} id="grid" className={`${css.listStyleButton} ${listStyle && css.styleButtonActive}`}><IoGrid /></button>
                     <button onClick={handleListChange} id="list" className={`${css.listStyleButton} ${!listStyle && css.styleButtonActive}`}><FaList /></button>
