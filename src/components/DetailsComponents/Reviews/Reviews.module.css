@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 20px;
 
+
     & li{
         max-width: 1000px;
     }

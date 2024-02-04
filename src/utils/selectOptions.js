@@ -1,7 +1,7 @@
 import { FaSortAmountDown } from "react-icons/fa";
 import { FaSortAmountUp } from "react-icons/fa";
 
-export const genreOptions = [
+export const genreMovieOptions = [
     { value: 'all', label: 'All' },
     { value: '28', label: 'Action' },
     { value: '16', label: 'Animations' },
@@ -17,6 +17,23 @@ export const genreOptions = [
     { value: '878', label: 'Sci-fi' },
     { value: '53', label: 'Thriler' },
     { value: '10752', label: 'War' },
+  ];
+
+  export const genreTvOptions = [
+    { value: 'all', label: 'All' },
+    { value: '10759', label: 'Action & Adventure' },
+    { value: '16', label: 'Animations' },
+    { value: '35', label: 'Comedy' },
+    { value: '80', label: 'Crime' },
+    { value: '99', label: 'Documentary' },
+    { value: '18', label: 'Drama' },
+    { value: '10751', label: 'Family' },
+    { value: '9648', label: 'Mistery' },
+    { value: '10763', label: 'News' },
+    { value: '10764', label: 'Reality' },
+    { value: '10765', label: 'Sci-fi & Fantasy' },
+    { value: '10767', label: 'Talk' },
+    { value: '10768', label: 'War & Politics' },
   ];
 
   export const filterOptions = [

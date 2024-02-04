@@ -4,7 +4,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar"
 import {useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { MoviesList } from "components/MoviesList/MoviesList"
 import Select from 'react-select';
-import { genreOptions, filterOptions } from "utils/selectOptions"
+import { genreMovieOptions, genreTvOptions, filterOptions } from "utils/selectOptions"
 import css from './Movies.module.css'
 import Notiflix from 'notiflix';
 
@@ -19,7 +19,7 @@ const Movies = () =>{
     const [listStyle, setListStyle] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [searchResult, setSearchResult] = useState(null)
-    const [selectedGenre, setSelectedGenre] = useState(genreOptions[0])
+    const [selectedGenre, setSelectedGenre] = useState(genreMovieOptions[0])
     const [selectFilter, setSelectFilter] = useState(filterOptions[0])
     const [page, setPage] = useState(1)
     
@@ -106,6 +106,7 @@ const Movies = () =>{
            return 
         }
         setSearchResult(null)
+        setSelectedGenre(genreMovieOptions[0])
         setPage(1)
         setMediaType(prevState => !prevState)
         
@@ -152,7 +153,6 @@ const Movies = () =>{
             <div className={css.moviesHeader}>
                 <SearchBar onSubmit={formHandler}/>
 
-               
                 
                 <ul  className={css.filterMenu}>
                 <li className={css.filterMenuItem}>
@@ -161,7 +161,7 @@ const Movies = () =>{
                         placeholder = "All"
                         value = {selectedGenre}
                         onChange={(e)=>handleChangeGenre(e)}
-                        options={genreOptions}
+                        options={type === 'movie' ? genreMovieOptions : genreTvOptions}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 8,

@@ -2,6 +2,8 @@ import {useState, useEffect, Suspense} from 'react'
 import { useParams, Outlet } from 'react-router-dom'
 import Notiflix from "notiflix";
 import * as API from '../../services/movies-api'
+import { MoviesSlider } from 'components/MoviesSlider/MoviesSlider';
+import css from '../MovieDetails/MoviesDetails.module.css'
 
 import { DetailsHero } from 'components/DetailsComponents/DetailsHero/DetailsHero';
 import { DetailsInfo } from 'components/DetailsComponents/DetailsInfo/DetailsInfo';
@@ -9,6 +11,7 @@ import { DetailsInfo } from 'components/DetailsComponents/DetailsInfo/DetailsInf
 export const TvDetails = () =>{
     const [series, setSeries] = useState({})
     const [seriesVids, setSeriesVids] = useState({})
+    const [tvSimilar, setTvSimilar] = useState({})
     const {tvId} = useParams()
 
     useEffect(() => {
@@ -18,8 +21,11 @@ export const TvDetails = () =>{
                 const fetchedSeries = await API.getTvDetails(tvId)
                 setSeries(fetchedSeries)
 
-                const movieVideos = await API.getTvDetails(tvId, '/videos')
-                setSeriesVids(movieVideos)
+                const tvVideos = await API.getTvDetails(tvId, '/videos')
+                setSeriesVids(tvVideos)
+
+                const tvSimilarF = await API.getTvDetails(tvId, '/similar')
+                setTvSimilar(tvSimilarF.results)
 
             }
             catch(error){Notiflix.Notify.failure('Error')}
@@ -34,5 +40,10 @@ export const TvDetails = () =>{
         <Suspense fallback={<div>Loading....</div>}>
                 <Outlet/>
         </Suspense>
+        <div className={css.similarsSlider}>
+                <h3 className={css.similarsTitle}>You also might like</h3>
+                
+                {Object.keys(tvSimilar).length!== 0 && <MoviesSlider movies={tvSimilar} type='tv'/>}
+        </div>
     </>)
 }

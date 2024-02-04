@@ -9,6 +9,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa6";
 import { AiOutlineLike } from "react-icons/ai";
+import { FaRegCalendar } from "react-icons/fa6";
+import { IoStarOutline } from "react-icons/io5";
 import { TrailerModal } from 'components/DetailsComponents/TrailerModal/TrailerModal';
 
 const EpisodeDetails = () =>{
@@ -17,6 +19,11 @@ const EpisodeDetails = () =>{
     const [videos, setVideos] = useState({})
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const pathnames = location.pathname.split('/')
+
+    const ratingBarStyle = {
+        background: 
+            `radial-gradient(closest-side, #1A1A1A 79%, transparent 80% 100%), conic-gradient(rgb(243, 208, 86) ${episode.vote_average && episode.vote_average.toFixed(1) * 10}%, #2f2f2f 0)`
+    }
 
     useEffect(() =>{
         window.scrollTo({top: 0, left: 0});
@@ -82,10 +89,20 @@ const EpisodeDetails = () =>{
                     })}
                 </ul>
                 <div className={css2.crewArticle}>
-                        <h3 className={css2.articleTitle}>{episode.name}</h3>
-                        <p className={css2.articleText}>Season: {episode.season_number}</p>
-                        <p className={css2.articleText}>Episode: {episode.episode_number}</p>
-                        <p className={css2.articleText}>Score: {episode.vote_average?.toFixed(1)}</p>
+                <div className={css2.articleBlock}>
+                    <p className={css2.articleTitle}><FaRegCalendar />{episode.air_date}</p>
+                    <span className={css2.detailsYear}>{episode?.release_date}</span>
+                </div>
+                <div className={css2.articleBlock}>
+                    <p className={css2.articleTitle}><IoStarOutline />Rating</p>
+                    
+                        <div style ={ratingBarStyle} className={css2.progressBar}>
+                            <span className={css2.articleProgressText}>{episode?.vote_average?.toFixed(1)}</span>
+                        </div>
+                    
+                    <p className={css2.articleESinfo}>Episode: {episode.episode_number}</p>
+                    <p className={css2.articleESinfo}>Season: {episode.season_number}</p>
+                </div>
                 </div>
             </div>
         </>

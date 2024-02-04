@@ -115,15 +115,6 @@
         width: 40px;
     }
 
-    p {
-        color: #999;
-        font-family: Manrope;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 150%;
-    }
-
     .detailsYear{
         color: white;
         font-family: Manrope;
@@ -149,6 +140,19 @@
     span{
         color: white;
     }
+}
+
+.articleTitle{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #999;
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
 }
 
 .VideoSliderWrap{
@@ -208,3 +212,4 @@
         background-color: #3c3c3c;
     }
 }
+
