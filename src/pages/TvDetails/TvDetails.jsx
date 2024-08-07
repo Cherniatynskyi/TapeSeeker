@@ -18,6 +18,7 @@ export const TvDetails = () =>{
         window.scrollTo({top: 0, left: 0});
         const getMovie = async () =>{
             try{
+                
                 const fetchedSeries = await API.getTvDetails(tvId)
                 setSeries(fetchedSeries)
 
@@ -26,7 +27,6 @@ export const TvDetails = () =>{
 
                 const tvSimilarF = await API.getTvDetails(tvId, '/similar')
                 setTvSimilar(tvSimilarF.results)
-
             }
             catch(error){Notiflix.Notify.failure('Error')}
      }

@@ -33,3 +33,17 @@
     background-color: #1f1f1f;
     color: white;
 }
+
+.signinBtn{
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    color: #bfbfbf;
+    text-decoration: none;
+    transition: 200ms linear;
+
+    cursor: pointer;
+}
+
+.signinBtn:hover{
+    color: white;
+}

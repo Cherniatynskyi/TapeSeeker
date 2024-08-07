@@ -4,9 +4,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import css from './App.module.css'
 import logo from '../images/logo.png'
 import { NavMenu } from "./NavMenu/NavMenu";
-import { slide as Menu } from 'react-burger-menu'
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
 import { FooterPost } from "./FooterPost/FooterPost";
 import { Footer } from "./Footer/Footer";
 
@@ -40,17 +37,6 @@ class Layout extends React.Component{
                         <span className={css.logoText}>TapeSeeker</span>
                     </NavLink>
                     <NavMenu></NavMenu>
-                    <div className={css.burgerMenuContainer}>
-                      <Menu className={css.burgerMenu} isOpen={this.state.menuOpen}
-                        onStateChange={(state) => this.handleStateChange(state)} right width={ '20%' }
-                        burgerButtonClassName={css.button }
-                        menuClassName={css.menuWrap}
-                        overlayClassName={css.overlay}
-                        customBurgerIcon={<RxHamburgerMenu color="white"/>} 
-                        customCrossIcon={<IoMdClose /> }>
-                          <li><NavLink onClick={() => this.toggleMenu()} className={css.navLink} to='/movies'>Movies</NavLink></li> 
-                      </Menu>
-                    </div>
                 </div>
             </nav>
             <main className={css.content}>

@@ -1,0 +1,53 @@
+.profileThumb{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #bfbfbf;
+    border-radius: 8px;
+    transition: 200ms linear;
+
+    cursor: pointer;
+}
+
+.profileThumb:hover{
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.popupBody{
+    position: absolute;
+
+    top: 100%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 60px;
+    width: 130%;
+
+    z-index: 1000;
+}
+
+.menuList{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+}
+
+.listItem{
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+}
+
+.listItem:hover{
+    background-color: rgb(65, 65, 65);
+}
