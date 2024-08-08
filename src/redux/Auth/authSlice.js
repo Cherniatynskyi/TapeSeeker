@@ -25,7 +25,6 @@ const handleFulfilledProfile = (state, {payload}) =>{
 }
 
 const handleFulfilledFetchCurrentUser = (state, {payload}) =>{
-    console.log(payload)
     state.profile = payload
 }
 

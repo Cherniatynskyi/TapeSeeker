@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./Auth/authSlice";
+import { moviesSlide } from "./Movies/moviesSlice";
 import {
     persistStore,
     persistReducer,
@@ -15,16 +16,18 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['access_token']
+    whitelist: ['access_token', 'favorites', 'scored', 'watchLater']
 }
 
-const persistedContactsReducer = persistReducer(persistConfig, authSlice.reducer)
+const persistedUsersReducer = persistReducer(persistConfig, authSlice.reducer)
+const persistedMoviesReducer = persistReducer(persistConfig, moviesSlide.reducer)
 
 
 export const store = configureStore({
     reducer: {
         // movies: contactsSlice.reducer,
-        auth: persistedContactsReducer
+        auth: persistedUsersReducer,
+        movies: persistedMoviesReducer
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

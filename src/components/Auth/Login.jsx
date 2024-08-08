@@ -5,6 +5,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 import css from './Auth.module.css';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from '../../redux/Auth/authThunk';
+import { getFavoritesThunk, getWatchLaterThunk, getScoredThunk } from '../../redux/Movies/moviesThunk';
 // import { Spinner } from 'components/Spinner';
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,6 +35,9 @@ export const Login = () => {
   const handleSubmit = e => {
     const { email, password } = e;
     dispatch(loginThunk({ email, password }));
+    dispatch(getFavoritesThunk())
+    dispatch(getWatchLaterThunk())
+    dispatch(getScoredThunk())
   };
 
   return (
